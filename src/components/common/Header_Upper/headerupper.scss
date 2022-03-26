@@ -1,0 +1,22 @@
+[data-headerupper] {
+    display: flex;
+    justify-content: space-around;
+    background-color: black;
+    padding: 5px;
+    color: white;
+    font-size: 13px;
+    font-weight: 800;
+    font-family: monospace;
+    align-items: center;
+}
+
+[data-headerupper-div] {
+    display: flex;
+    align-items: center;
+   
+}
+
+.headerupper-span{
+    margin-left: 10px;
+    align-items: center;
+}

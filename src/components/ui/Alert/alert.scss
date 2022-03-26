@@ -1,0 +1,23 @@
+[data-store-alert] {
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
+  text-align: center;
+  min-height: var(--space-7);
+  padding-left: var(--space-3);
+  color: var(--color-secondary-1);
+  font-size: var(--text-size-2);
+  background-color: #007bc6;
+
+  span { font-weight: var(--text-weight-bold); }
+
+  [data-alert-button] {
+  
+    min-width: var(--space-7);
+    min-height: var(--space-7);
+    color: var(--color-secondary-1);
+    background-color: transparent;
+    border: none;
+    margin-right: 10px;
+  }
+}

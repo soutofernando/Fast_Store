@@ -1,0 +1,54 @@
+@import "src/styles/scaffold";
+
+[data-store-search-input] {
+  position: relative;
+  display: inline-flex;
+  width:100%;
+  height: var(--tap-min-size);
+  overflow: hidden;
+  align-items: center;
+  @include media(">=notebook") { height: var(--space-6); }
+
+  [data-store-input] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: none;
+    transition: box-shadow .2s ease, border .2s ease;
+    background-color: #e9ecef;
+    padding-right: 35px;
+    height: 78%;
+    
+    
+
+    &:hover {
+      transition: all 1s;
+      box-shadow: 0 0 0 var(--border-width-0) black;
+    }
+  
+  }
+
+  [data-store-icon] { display: block;}
+
+  [data-store-button] {
+    position: absolute;
+    right: 0;
+    width: 15%;
+    height:15px;
+    padding: 0;
+    background-color: transparent;
+  
+   
+
+    @include media(">=notebook") {
+      height: var(--space-6);
+      min-height: var(--space-6);
+    }
+  }
+
+  [data-store-button] svg {
+    width: var(--space-4);
+    height: var(--space-4);
+    color: var(--color-neutral-7);
+  }
+}
