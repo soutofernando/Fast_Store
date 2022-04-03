@@ -15,7 +15,7 @@ function Layout({ children }: PropsWithChildren<unknown>) {
   const { displayMinicart } = useUI()
 
   return (
-    <div id="layout">
+    <div id="layout" >
       <HeaderUpper />
       <Navbar />
       <Alert>

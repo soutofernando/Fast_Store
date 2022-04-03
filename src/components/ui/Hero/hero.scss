@@ -4,7 +4,8 @@
   display: flex;
   flex-direction: column-reverse;
   width: 100%;
-  background-color: var(--bg-secondary-default);
+  background-color: black;
+  height: 73vh;
 
   @include media(">=tablet") {
     position: relative;

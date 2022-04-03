@@ -18,26 +18,27 @@ function OrderSummary({
   numberOfItems,
   checkoutButton,
 }: OrderSummaryProps) {
-  const discount = subTotal - total
-  const formattedDiscount = useFormattedPrice(discount)
 
   return (
     <List className="order-summary" data-order-summary>
-      <li>
-        <span>Subtotal ({numberOfItems} products)</span>
-        <span>{useFormattedPrice(subTotal)}</span>
-      </li>
-      {discount > 0 && (
-        <li data-order-summary-discount>
-          <span>Discount</span>
-          <span>-{formattedDiscount}</span>
-        </li>
-      )}
-      <li className="title-subsection">
-        <span>Total</span>
-        <span>{useFormattedPrice(total)}</span>
-      </li>
       {checkoutButton}
+      <div className='mt-10 border p-4'>
+        <div className='font-black text-xl'>
+          RESUMO DO PEDIDO
+        </div>
+        <div className='flex justify-between mt-3'>
+          <span>{numberOfItems} PRODUTO</span>
+          <span>{useFormattedPrice(subTotal)}</span>
+        </div>
+        <div className='flex justify-between mt-3'>
+          <span>ENTREGA</span>
+          <span>Livre</span>
+        </div>
+        <div className="flex justify-between mt-3 font-black">
+          <span>TOTAL</span>
+          <span>{useFormattedPrice(total)}</span>
+        </div>
+      </div>
     </List>
   )
 }

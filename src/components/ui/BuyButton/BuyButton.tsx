@@ -10,8 +10,8 @@ type Props = ButtonProps
 function BuyButton({ children, ...props }: Props) {
   return (
     <UIButton className="button" data-store-buy-button {...props}>
-      <Icon name="ShoppingCart" width={18} height={18} weight="bold" />
       {children}
+      <Icon name="ArrowRight" width={18} height={18} weight="bold"  />
     </UIButton>
   )
 }

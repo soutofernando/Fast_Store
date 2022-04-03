@@ -1,7 +1,9 @@
 import type { ReactNode } from 'react'
 import React, { memo } from 'react'
+import Price from '../Price'
 
 import './product-title.scss'
+
 
 interface ProductTitleProp {
   /**
@@ -16,6 +18,7 @@ interface ProductTitleProp {
    * A text to be used below the title and the label, such as the product's reference number.
    */
   refNumber?: string
+
 }
 
 function ProductTitle({ title, label, refNumber }: ProductTitleProp) {

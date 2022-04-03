@@ -80,13 +80,33 @@ function ProductCard({
       data-card-out-of-stock={outOfStock}
       {...otherProps}
     >
-      <UICardImage>
+      <UICardImage >
         <Image
           baseUrl={img.url}
           alt={img.alternateName}
           aspectRatio={aspectRatio}
           {...imgOptions}
         />
+        <div className="product-card__prices">
+          <Price
+            value={listPrice}
+            formatter={useFormattedPrice}
+            testId="list-price"
+            data-value={listPrice}
+            variant="listing"
+            classes="text-body-small"
+            SRText="Original price:"
+          />
+          <Price
+            value={spotPrice}
+            formatter={useFormattedPrice}
+            testId="price"
+            data-value={spotPrice}
+            variant="spot"
+            classes="text-body"
+            SRText="Sale Price:"
+          />
+        </div>
       </UICardImage>
       <UICardContent>
         <div className="product-card__heading">
@@ -95,26 +115,6 @@ function ProductCard({
               {name}
             </Link>
           </h3>
-          <div className="product-card__prices">
-            <Price
-              value={listPrice}
-              formatter={useFormattedPrice}
-              testId="list-price"
-              data-value={listPrice}
-              variant="listing"
-              classes="text-body-small"
-              SRText="Original price:"
-            />
-            <Price
-              value={spotPrice}
-              formatter={useFormattedPrice}
-              testId="price"
-              data-value={spotPrice}
-              variant="spot"
-              classes="text-body"
-              SRText="Sale Price:"
-            />
-          </div>
         </div>
 
         {outOfStock ? (

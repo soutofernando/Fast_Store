@@ -71,7 +71,7 @@ function Navbar() {
 
   return (
 
-    <div className="block h-27 w-full">
+    <div className="block h-27">
       <header className='media_container'>
         {!searchExpanded && (
           <>

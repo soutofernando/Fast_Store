@@ -7,16 +7,15 @@ import BuyButton from 'src/components/ui/BuyButton'
 import { Image } from 'src/components/ui/Image'
 import Price from 'src/components/ui/Price'
 import ProductTitle from 'src/components/ui/ProductTitle'
-import QuantitySelector from 'src/components/ui/QuantitySelector'
 import { useBuyButton } from 'src/sdk/cart/useBuyButton'
 import { useFormattedPrice } from 'src/sdk/product/useFormattedPrice'
 import { useProduct } from 'src/sdk/product/useProduct'
 import type { ProductDetailsFragment_ProductFragment } from '@generated/graphql'
 import type { CurrencyCode, ViewItemEvent } from '@faststore/sdk'
 import type { AnalyticsItem } from 'src/sdk/analytics/types'
-
 import './product-details.scss'
 import Section from '../Section'
+import ProductPortion from '../ProductPortion/ProductPortion'
 
 interface Props {
   product: ProductDetailsFragment_ProductFragment
@@ -116,19 +115,29 @@ function ProductDetails({ product: staleProduct }: Props) {
   ])
 
   return (
-    <Section className="product-details / grid-content grid-section">
-      <Breadcrumb breadcrumbList={breadcrumbs.itemListElement} />
-
+    <Section className="product-details">
       <section className="product-details__body">
         <header className="product-details__title">
           <ProductTitle
-            title={<h1 className="title-product">{name}</h1>}
+            title={<h1 className="title-product">{name.toUpperCase()}</h1>}
             label={<DiscountBadge listPrice={listPrice} spotPrice={lowPrice} />}
             refNumber={productId}
           />
+          <div className='pl-6'>
+            <Price
+              value={lowPrice}
+              formatter={useFormattedPrice}
+              testId="price"
+              data-value={lowPrice}
+              variant="spot"
+              classes="title-display"
+              SRText="Sale Price:"
+            />
+          </div>
         </header>
 
         <section className="product-details__image">
+          <Breadcrumb breadcrumbList={breadcrumbs.itemListElement} />
           <Image
             baseUrl={productImages[0].url}
             alt={productImages[0].alternateName}
@@ -137,44 +146,22 @@ function ProductDetails({ product: staleProduct }: Props) {
         </section>
 
         <section className="product-details__settings">
-          <section className="product-details__values">
-            <div className="product-details__prices">
-              <Price
-                value={listPrice}
-                formatter={useFormattedPrice}
-                testId="list-price"
-                data-value={listPrice}
-                variant="listing"
-                classes="text-body-small"
-                SRText="Original price:"
-              />
-              <Price
-                value={lowPrice}
-                formatter={useFormattedPrice}
-                testId="price"
-                data-value={lowPrice}
-                variant="spot"
-                classes="title-display"
-                SRText="Sale Price:"
-              />
-            </div>
-            {/* <div className="prices">
-              <p className="price__old text-body-small">{formattedListPrice}</p>
-              <p className="price__new">{isValidating ? '' : formattedPrice}</p>
-            </div> */}
-            <QuantitySelector min={1} max={10} onChange={setAddQuantity} />
-          </section>
+
+          <ProductPortion price={lowPrice} />
+
           {/* NOTE: A loading skeleton had to be used to avoid a Lighthouse's
               non-composited animation violation due to the button transitioning its
               background color when changing from its initial disabled to active state.
               See full explanation on commit https://git.io/JyXV5. */}
-          {isValidating ? (
-            <AddToCartLoadingSkeleton />
-          ) : (
-            <BuyButton disabled={buyDisabled} {...buyProps}>
-              Add to Cart
-            </BuyButton>
-          )}
+          <div className="mt-10">
+            {isValidating ? (
+              <AddToCartLoadingSkeleton />
+            ) : (
+              <BuyButton disabled={buyDisabled} {...buyProps}>
+                ADICIONAR AO CARRINHO
+              </BuyButton>
+            )}
+          </div>
         </section>
 
         <section className="product-details__content">

@@ -2,11 +2,13 @@
 
 .button[data-store-buy-button] {
   color: var(--color-text-inverse);
-  background-color: var(--bg-primary-default);
+  background-color: black;
+  justify-content: space-around;
+  border-radius: 0;
 
-  &:hover { background-color: var(--bg-primary-hover); }
+  &:hover { color: gray; transition: all 0.3s; }
 
-  &:active { background-color: var(--bg-primary-pressed); }
+  &:active { background-color:black; }
 
   &:disabled {
     color: var(--color-neutral-6);

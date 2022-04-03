@@ -4,13 +4,13 @@ import UIHero, {
   HeroImage,
   HeroLink,
 } from 'src/components/ui/Hero'
-import Image from 'src/components/ui/Image/Image'
 import { LinkButton } from 'src/components/ui/Button'
 import Icon from 'src/components/ui/Icon'
 
 import Section from '../Section'
 
 type Variant = 'default' | 'small'
+
 
 interface HeroProps {
   title: string
@@ -61,7 +61,7 @@ const Hero = ({
               {!!link && (
                 <HeroLink>
                   <LinkButton to={link} inverse>
-                    {linkText} <Icon name="ArrowRight" width={24} height={24} />
+                  {linkText} <Icon name="ArrowRight" width={24} height={24} />
                   </LinkButton>
                 </HeroLink>
               )}
@@ -70,7 +70,7 @@ const Hero = ({
           </div>
         </HeroContent>
         <HeroImage>
-          <Image baseUrl={imageSrc} alt={imageAlt} {...imgProps} />
+          <img src={imageSrc} alt={imageAlt} {...imgProps} />
         </HeroImage>
       </UIHero>
     </Section>

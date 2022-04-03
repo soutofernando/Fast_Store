@@ -10,6 +10,7 @@ import ProductTiles from 'src/components/sections/ProductTiles'
 import { mark } from 'src/sdk/tests/mark'
 import type { PageProps } from 'gatsby'
 import type { HomePageQueryQuery } from '@generated/graphql'
+import TeamSection from 'src/components/sections/TeamSection/TeamSection'
 
 export type Props = PageProps<HomePageQueryQuery>
 
@@ -66,17 +67,19 @@ function Page(props: Props) {
         (not the HTML tag) before rendering it here.
       */}
       <Hero
-        title="New Products Available"
-        subtitle="At FastStore you can shop the best tech of 2022. Enjoy and get 10% off on your first purchase."
-        linkText="See all"
+        title="Nova Coleção de Verão já Disponível"
+        subtitle="Coleção 22/23 do Flamengo já se encontra disponível com 10% de desconto."
+        linkText="COMPRAR"
         link="/"
-        imageSrc="https://storeframework.vtexassets.com/arquivos/ids/190897/Photo.jpg"
-        imageAlt="Quest 2 Controller on a table"
+        imageSrc="https://1.bp.blogspot.com/-m36gu_IDuz8/Xpc7cVeeLwI/AAAAAAABhqM/Lc2_0bT4pycT6CXvaBRKAnnZbWbAuzIggCLcBGAsYHQ/s1600/capaPatrocinio-2.png"
+        imageAlt="Imagem do patrocinio do Flamengo"
       />
+      
+      <TeamSection />
+
+      <ProductShelf products={products?.slice(0, 5)} title="NOVIDADES" />
 
       <IncentivesHeader />
-
-      <ProductShelf products={products?.slice(0, 5)} title="Most Wanted" />
 
       <ProductTiles products={products?.slice(5, 8)} title="Just Arrived" />
 

@@ -16,15 +16,14 @@ interface ProductShelfProps {
 function ProductShelf({
   products,
   title,
-  withDivisor = false,
 }: ProductShelfProps) {
   return (
-    <Section
-      className={`page__section-shelf / grid-section ${
-        withDivisor ? 'page__section-divisor' : ''
-      }`}
-    >
-      <h2 className="title-section / grid-content">{title}</h2>
+    <Section className="pl-28 pr-28 pt-3 pb-3">
+      <div className="border-y-2" >
+        <div className='border-b-4 p-6 border-black w-36'>
+          <span className="font-mono font-extrabold text-lg" >{title}</span>
+        </div>
+      </div>
       <div className="page__section-content">
         <ProductShelfSkeleton loading={products.length === 0}>
           <ul data-product-shelf className="grid-content">
