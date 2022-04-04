@@ -5,7 +5,7 @@ import LittleOrderSummary from '../OrderSummary/LittleOrderSummary'
 interface Props {
     subTotal: number
     totalItems: number
-
+   
 }
 
 const CartHeader = ({ subTotal, totalItems }: Props) => {
@@ -24,9 +24,6 @@ const CartHeader = ({ subTotal, totalItems }: Props) => {
             <div className="bg-orange-50 mt-4 pb-14 p-6">
                 <div className='font-black text-xl'>SEMANA DO CLUBE TEM FRETE GRÁTIS ATÉ O DIA 07 DE ABRIL</div>
                 <div className=''>Aproveite o frete grátis para todas as suas compras</div>
-            </div>
-            <div>
-
             </div>
         </div>
     )

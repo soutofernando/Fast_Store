@@ -8,7 +8,7 @@ import "./order-summary.scss"
 interface OrderSummaryProps {
     subTotal: number
     numberOfItems: number
-   
+
 }
 
 const LittleOrderSummary = ({
@@ -17,10 +17,11 @@ const LittleOrderSummary = ({
 }: OrderSummaryProps) => {
 
     return (
-        <List >
+        <List>
             <div className="mt-4">
                 <li>
-                    <span>TOTAL ({numberOfItems} produto) <span className='font-black'>{useFormattedPrice(subTotal)}</span></span>
+                    <span>{numberOfItems <= 1 ? <div>TOTAL ({numberOfItems} produto) <span className='font-black'>{useFormattedPrice(subTotal)}</span></div> :
+                        <div>TOTAL ({numberOfItems} produtos) <span className='font-black'>{useFormattedPrice(subTotal)}</span></div>}</span>
                 </li>
             </div>
             <div className='mt-2 w-11/12'>

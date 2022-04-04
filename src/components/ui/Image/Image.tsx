@@ -20,7 +20,7 @@ function Image({
   options,
   ...imgProps
 }: Props) {
-  const getImage = useGetThumborImageData()
+const getImage = useGetThumborImageData()
   const image = useMemo(
     () =>
       getImage({

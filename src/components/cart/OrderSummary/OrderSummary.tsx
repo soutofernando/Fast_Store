@@ -27,7 +27,7 @@ function OrderSummary({
           RESUMO DO PEDIDO
         </div>
         <div className='flex justify-between mt-3'>
-          <span>{numberOfItems} PRODUTO</span>
+          <span>{numberOfItems <= 1 ? <div>{numberOfItems} PRODUTO</div> : <div>{numberOfItems} PRODUTOS</div> } </span>
           <span>{useFormattedPrice(subTotal)}</span>
         </div>
         <div className='flex justify-between mt-3'>

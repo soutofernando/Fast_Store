@@ -19,6 +19,7 @@
   border: 0;
   cursor: pointer;
 
+
   &:disabled, &[data-button-disabled="true"] {
     cursor: not-allowed;
     svg { color: var(--color-neutral-5); }

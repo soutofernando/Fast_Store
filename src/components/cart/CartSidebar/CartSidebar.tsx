@@ -34,7 +34,7 @@ function CartSidebar() {
       onDismiss={closeMinicart}
       onDismissTransition={(callback) => (dismissTransition.current = callback)}
       size="partial"
-      direction="rightSide"
+      direction="leftSide"
       className="cart-sidebar"
     >
       <header data-testid="cart-sidebar">

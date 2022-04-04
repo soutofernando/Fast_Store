@@ -1,5 +1,4 @@
 import React, { lazy, Suspense } from 'react'
-import Alert from 'src/components/common/Alert'
 import Footer from 'src/components/common/Footer'
 import Navbar from 'src/components/common/Navbar'
 import Toast from 'src/components/common/Toast'
@@ -18,12 +17,10 @@ function Layout({ children }: PropsWithChildren<unknown>) {
     <div id="layout" >
       <HeaderUpper />
       <Navbar />
-      <Alert>
-        Entre gratuitamente para o adiClub e ganhe 15% de desconto.&nbsp;<span>Entre para o clube</span>
-      </Alert>
 
       <main>{children}</main>
-
+ 
+      {/* saber como fazer caso a url seja /cart, nao renderizar o footer e toast */}
       <Footer />
 
       <Toast />

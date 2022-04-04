@@ -10,7 +10,9 @@ import ProductTiles from 'src/components/sections/ProductTiles'
 import { mark } from 'src/sdk/tests/mark'
 import type { PageProps } from 'gatsby'
 import type { HomePageQueryQuery } from '@generated/graphql'
+import Alert from 'src/components/common/Alert'
 import TeamSection from 'src/components/sections/TeamSection/TeamSection'
+import Section from 'src/components/sections/Section'
 
 export type Props = PageProps<HomePageQueryQuery>
 
@@ -66,6 +68,11 @@ function Page(props: Props) {
         If needed, wrap your component in a <Section /> component
         (not the HTML tag) before rendering it here.
       */}
+      <Section>
+        <Alert>
+          Entre gratuitamente para o adiClub e ganhe 15% de desconto.&nbsp;<span>Entre para o clube</span>
+        </Alert>
+      </Section>
       <Hero
         title="Nova Coleção de Verão já Disponível"
         subtitle="Coleção 22/23 do Flamengo já se encontra disponível com 10% de desconto."
@@ -74,7 +81,7 @@ function Page(props: Props) {
         imageSrc="https://1.bp.blogspot.com/-m36gu_IDuz8/Xpc7cVeeLwI/AAAAAAABhqM/Lc2_0bT4pycT6CXvaBRKAnnZbWbAuzIggCLcBGAsYHQ/s1600/capaPatrocinio-2.png"
         imageAlt="Imagem do patrocinio do Flamengo"
       />
-      
+
       <TeamSection />
 
       <ProductShelf products={products?.slice(0, 5)} title="NOVIDADES" />

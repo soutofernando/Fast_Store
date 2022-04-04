@@ -8,7 +8,7 @@ import { useCart } from 'src/sdk/cart/useCart'
 import { useRemoveButton } from 'src/sdk/cart/useRemoveButton'
 import { useFormattedPrice } from 'src/sdk/product/useFormattedPrice'
 import type { CartItem as ICartItem } from 'src/sdk/cart/validate'
-import Icon from 'src/components/ui/Icon'
+
 
 import './cart-item.scss'
 
@@ -19,7 +19,7 @@ interface Props {
 const imgOptions = {
   sourceWidth: 360,
   aspectRatio: 1,
-  width: 72,
+  width: 250,
   breakpoints: [50, 100, 150],
   layout: 'constrained' as const,
   backgroundColor: '#f0f0f0',
@@ -45,46 +45,37 @@ function CartItem({ item }: Props) {
           />
         </CardImage>
         <div data-cart-item-summary>
-          <p className="text-body">{item.itemOffered.isVariantOf.name}</p>
-          <span data-cart-item-prices>
-            <Price
-              value={item.listPrice}
-              formatter={useFormattedPrice}
-              testId="list-price"
-              data-value={item.listPrice}
-              variant="listing"
-              classes="text-body-small"
-              SRText="Original price:"
-            />
-            <Price
-              value={item.price}
-              formatter={useFormattedPrice}
-              testId="price"
-              data-value={item.price}
-              variant="spot"
-              classes="title-subsection"
-              SRText="Price:"
+          <p className="text-body">{item.itemOffered.isVariantOf.name.toUpperCase()}</p>
+          <span data-cart-item-quantity>
+            <QuantitySelector
+              min={1}
+              initial={item.quantity}
+              onChange={(quantity) => updateItemQuantity(item.id, quantity)}
             />
           </span>
         </div>
+        <div className='flex pt-4 pl-16'>
+          <Price
+            value={item.price}
+            formatter={useFormattedPrice}
+            testId="price"
+            data-value={item.price}
+            variant="spot"
+            classes="title-subsection"
+            SRText="Price:"
+          />
+          <div className="pl-10 relative bottom-4">
+            <CardActions>
+              <Button
+                {...btnProps}
+              >X
+              </Button>
+            </CardActions>
+          </div>
+        </div>
       </CardContent>
 
-      <CardActions>
-        <Button
-          variant="tertiary"
-          icon={<Icon name="XCircle" width={18} height={18} />}
-          iconPosition="left"
-          {...btnProps}
-        >
-          Remove
-        </Button>
-        <QuantitySelector
-          min={1}
-          initial={item.quantity}
-          onChange={(quantity) => updateItemQuantity(item.id, quantity)}
-        />
-      </CardActions>
-    </Card>
+    </Card >
   )
 }
 

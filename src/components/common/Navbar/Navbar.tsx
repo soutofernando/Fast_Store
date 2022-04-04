@@ -165,6 +165,7 @@ function Navbar() {
           </LinkGatsby>
         </div>
       </SlideOver>
+      <hr />
     </div >
   )
 }

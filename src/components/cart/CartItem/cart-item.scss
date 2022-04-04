@@ -1,24 +1,18 @@
 .cart-item {
-  padding: var(--space-3);
   background-color: var(--bg-neutral-lightest);
-  border: var(--border-width-0) solid var(--color-border-display);
-  border-radius: var(--border-radius-default);
+  border: 1px solid black;
+  border-radius:0;
+  margin-bottom: 20px;
 
   [data-card-content] {
     display: flex;
-    align-items: center;
-  }
-
-  [data-gatsby-image-wrapper] {
-    flex-shrink: 0;
-    margin-bottom: auto;
-    border-radius: var(--border-radius-default);
+   
   }
 
   [data-cart-item-summary] {
-    display: flex;
-    flex-direction: column;
-    margin-left: var(--space-3);
+    display: block;
+    margin-top: var(--space-3);
+    margin-left: var(--space-5);
 
     p {
       margin-bottom: var(--space-0);
@@ -26,14 +20,9 @@
     }
   }
 
-  [data-cart-item-prices] {
+  [data-cart-item-quantity] {
     display: flex;
+    margin-top: 140px;
     align-items: baseline;
-  }
-
-  [data-card-actions] {
-    display: flex;
-    justify-content: space-between;
-    margin-top: var(--space-3);
   }
 }
