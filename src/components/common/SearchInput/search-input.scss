@@ -3,42 +3,36 @@
 [data-store-search-input] {
   position: relative;
   display: inline-flex;
-  width:100%;
+  width: 100%;
   height: var(--tap-min-size);
-  overflow: hidden;
-  align-items: center;
+  
+
   @include media(">=notebook") { height: var(--space-6); }
 
   [data-store-input] {
     width: 100%;
-    padding: 10px;
-    border: none;
-    border-radius: none;
+    padding: var(--space-1) var(--space-5) var(--space-1) var(--space-2);
+    border-radius:0 ;
     transition: box-shadow .2s ease, border .2s ease;
-    background-color: #e9ecef;
-    padding-right: 35px;
-    height: 78%;
-    
-    
+    background-color: rgb(233, 236, 239);
 
     &:hover {
-      transition: all 1s;
-      box-shadow: 0 0 0 var(--border-width-0) black;
+      transition: all 1.5s;
+      border:1px solid black;
     }
-  
+
   }
 
-  [data-store-icon] { display: block;}
+  [data-store-icon] { display: block; }
 
   [data-store-button] {
     position: absolute;
     right: 0;
-    width: 15%;
-    height:15px;
+    width: var(--space-6);
+    height: var(--space-5);
     padding: 0;
     background-color: transparent;
-  
-   
+    border: 0;
 
     @include media(">=notebook") {
       height: var(--space-6);
