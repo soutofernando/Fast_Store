@@ -44,7 +44,7 @@ function Page(props: Props) {
           description: site?.siteMetadata?.description ?? '',
         }}
       />
-      <JsonLd
+    <JsonLd
         json={{
           '@context': 'https://schema.org',
           '@type': 'WebSite',

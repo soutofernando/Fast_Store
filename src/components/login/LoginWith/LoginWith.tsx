@@ -1,12 +1,17 @@
 import { Button } from '@faststore/ui'
-import React from 'react'
+
+import React, { useContext } from 'react'
+import { FireContext } from 'src/utils/FireContext/FireProvider'
 
 
 const LoginWith = () => {
+
+    const { signInWithGoogle } = useContext(FireContext)
+
     return (
         <div>
             <div>
-                <Button className='border border-black w-52'>
+                <Button onClick={signInWithGoogle} className='border border-black w-52'>
                     <div className='flex p-2 rounded-none justify-between'>
                         <span className='mt-2 font-black'> GOOGLE</span>
                         <img width={40} height={40} src='https://cdn-teams-slug.flaticon.com/google.jpg' />

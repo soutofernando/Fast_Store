@@ -1,9 +1,10 @@
 import React, { useContext } from 'react'
 import { FireContext } from 'src/utils/FireContext/FireProvider'
 
-const LoginPasswd = () => {
 
-    const { loginPasswd, setLoginPasswd } = useContext(FireContext)
+const RegisterPasswd = () => {
+
+    const { registerPasswd, setRegisterPasswd } = useContext(FireContext)
 
     return (
         <div className="mt-4">
@@ -11,10 +12,10 @@ const LoginPasswd = () => {
                 <label className='font-mono text-base'>Senha:</label>
             </div>
             <div>
-                <input onChange={(e) => setLoginPasswd(e.target.value)} value={loginPasswd} placeholder='Senha *' type="password" className='border border-black p-4 w-full' />
+                <input onChange={(e) => setRegisterPasswd(e.target.value)} value={registerPasswd} placeholder='Senha *' type="password" className='border border-black p-4 w-full' />
             </div>
         </div>
     )
 }
 
-export default LoginPasswd
+export default RegisterPasswd

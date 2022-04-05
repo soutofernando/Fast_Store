@@ -8,11 +8,12 @@ import LoginEmail from 'src/components/login/LoginInput/LoginEmail'
 import LoginPasswd from 'src/components/login/LoginPasswd/LoginPasswd'
 import LoginWith from 'src/components/login/LoginWith/LoginWith'
 import PrivacyNotice from 'src/components/login/PrivacyNotice/PrivacyNotice'
+import Section from 'src/components/sections/Section'
 
 
 const login = () => {
   return (
-    <div>
+    <Section>
       <div className="xl:flex justify-around mt-4 mr-48 ml-48">
         <div className='block w-1/2'>
           <div>
@@ -43,8 +44,10 @@ const login = () => {
           </div>
         </div>
       </div>
+
       <FooterLogin />
-    </div>
+
+    </Section>
   )
 }
 

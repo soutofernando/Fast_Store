@@ -13,24 +13,27 @@ import ErrorBoundary from './src/sdk/error/ErrorBoundary'
 import TestProvider from './src/sdk/tests'
 import { uiActions, uiEffects, uiInitialState } from './src/sdk/ui'
 import storeConfig from './store.config'
+import FireProvider from "./src/utils/FireContext/FireProvider"
 
 export const wrapRootElement = ({ element }) => (
-  <ErrorBoundary>
-    <AnalyticsHandler />
-    <TestProvider>
-      <UIProvider
-        initialState={uiInitialState}
-        actions={uiActions}
-        effects={uiEffects}
-      >
-        <SessionProvider initialState={{ channel: storeConfig.channel }}>
-          <CartProvider mode="optimistic" onValidateCart={validateCart}>
-            {element}
-          </CartProvider>
-        </SessionProvider>
-      </UIProvider>
-    </TestProvider>
-  </ErrorBoundary>
+  <FireProvider>
+    <ErrorBoundary>
+      <AnalyticsHandler />
+      <TestProvider>
+        <UIProvider
+          initialState={uiInitialState}
+          actions={uiActions}
+          effects={uiEffects}
+        >
+          <SessionProvider initialState={{ channel: storeConfig.channel }}>
+            <CartProvider mode="optimistic" onValidateCart={validateCart}>
+              {element}
+            </CartProvider>
+          </SessionProvider>
+        </UIProvider>
+      </TestProvider>
+    </ErrorBoundary>
+  </FireProvider>
 )
 
 export const wrapPageElement = ({ element }) => {

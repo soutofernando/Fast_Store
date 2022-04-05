@@ -1,6 +1,7 @@
 import React from 'react'
 import Button from 'src/components/ui/Button'
 import Icon from 'src/components/ui/Icon'
+import { Link } from 'gatsby'
 
 const LoginInfo = () => {
     return (
@@ -47,12 +48,14 @@ const LoginInfo = () => {
                 <span>Quer saber mais sobre o adiClub?</span>
             </div>
             <div className='mt-4'>
-                <Button className='bg-black text-white p-4 font-mono font-black hover:text-gray-600 '>
-                    <div className='flex'>ENTRE PARA O CLUBE<div className='ml-4'>
-                        <Icon name='ArrowRight' width={25} height={25} />
-                    </div>
-                    </div>
-                </Button>
+                <Link to="/register">
+                    <Button className='bg-black text-white p-4 font-mono font-black hover:text-gray-600 '>
+                        <div className='flex'>ENTRE PARA O CLUBE<div className='ml-4'>
+                            <Icon name='ArrowRight' width={25} height={25} />
+                        </div>
+                        </div>
+                    </Button>
+                </Link>
             </div>
         </div>
     )
