@@ -1,6 +1,7 @@
 import React, { createContext, FC, useEffect, useState } from 'react'
 import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth"
 import { auth } from 'src/Firebase/Firebase'
+import { navigate } from "gatsby"
 import * as Yup from 'yup'
 
 
@@ -56,8 +57,9 @@ const FireProvider: FC = ({ children }) => {
     const onSubmitLogin = async (values: any) => {
 
         await signInWithEmailAndPassword(auth, values.loginEmail, values.loginPasswd).
-            then(() => {
-
+            then((user) => {
+                navigate("/")
+                console.log(user)
             }).
             catch(
                 (error) => {
@@ -68,8 +70,8 @@ const FireProvider: FC = ({ children }) => {
 
     const onSubmitRegister = async (values: any) => {
         await createUserWithEmailAndPassword(auth, values.registerEmail, values.registerPasswd).
-            then(async () => {
-                window.location.href = "/"
+            then(() => {
+                navigate("/")
             }).
             catch(
                 (error) => {
@@ -90,7 +92,13 @@ const FireProvider: FC = ({ children }) => {
     });
 
     const logout = async () => {
-        await signOut(auth)
+        await signOut(auth).
+            then(() => {
+                navigate("/")
+            }).
+            catch((error) => {
+                console.log(error)
+            })
     }
 
     useEffect(() => {
@@ -101,7 +109,6 @@ const FireProvider: FC = ({ children }) => {
                 setUser(sessionUser)
             }
         }
-        console.log(user)
         loadStoreAuth()
     }, [])
 

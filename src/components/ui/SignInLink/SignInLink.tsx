@@ -12,7 +12,7 @@ const SignInLink: React.FC = () => {
   const btnProps = useCartToggleButton()
 
   return (
-    <Link to={user ? "/userprofile" : "/login" }>
+    <Link to={user ? "/myaccount" : "/login" }>
       <IconButton
         {...btnProps}
         className="title-sub-subsection signin-link"
