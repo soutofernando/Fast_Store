@@ -2,6 +2,7 @@ import React from 'react'
 import FooterLogin from 'src/components/login/FooterLogin/FooterLogin'
 import KeepConnected from 'src/components/login/KeepConnected/KeepConnected'
 import LoginButton from 'src/components/login/LoginButton/LoginButton'
+import LoginForm from 'src/components/login/LoginForm/LoginForm'
 import LoginHeader from 'src/components/login/LoginHeader/LoginHeader'
 import LoginInfo from 'src/components/login/LoginInfo/LoginInfo'
 import LoginEmail from 'src/components/login/LoginInput/LoginEmail'
@@ -20,16 +21,10 @@ const login = () => {
             <LoginHeader />
           </div>
           <div>
-            <LoginEmail />
-          </div>
-          <div>
-            <LoginPasswd />
+            <LoginForm />
           </div>
           <div>
             <KeepConnected />
-          </div>
-          <div>
-            <LoginButton />
           </div>
           <div>
             <PrivacyNotice />

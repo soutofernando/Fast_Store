@@ -1,38 +1,35 @@
 import React, { createContext, FC, useEffect, useState } from 'react'
-import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth"
+import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth"
 import { auth } from 'src/Firebase/Firebase'
-import { Navigate } from "react-router-dom"
+import * as Yup from 'yup'
+
 
 interface Props {
-    login(user: any): void
-    register(user: any): any
+    onSubmitLogin(user: any): void
     signInWithGoogle(user: any): void
     user?: any
-    signed?: boolean
     loginEmail: string
     setLoginEmail(email: string): void
     loginPasswd: string
     setLoginPasswd(passwd: string): void
-    registerEmail: string
-    setRegisterEmail(email: string): void
-    registerPasswd: string
-    setRegisterPasswd(passwd: string): void
-
+    onSubmitRegister(e: any): void
+    validateSchema: any
+    isLogged(validate: any): void
+    logout(sign: any): void
 }
 
 export const FireContext = createContext<Props>({
-    login: () => { },
-    register: () => { },
+    onSubmitLogin: () => { },
     signInWithGoogle: () => { },
     user: [],
     loginEmail: "",
     setLoginEmail: () => { },
     loginPasswd: "",
     setLoginPasswd: () => { },
-    registerEmail: "",
-    setRegisterEmail: () => { },
-    registerPasswd: "",
-    setRegisterPasswd: () => { },
+    onSubmitRegister: () => { },
+    validateSchema: () => { },
+    isLogged: () => { },
+    logout: () => { },
 })
 
 const FireProvider: FC = ({ children }) => {
@@ -40,9 +37,6 @@ const FireProvider: FC = ({ children }) => {
     const [user, setUser] = useState<any>(null)
     const [loginEmail, setLoginEmail] = useState("")
     const [loginPasswd, setLoginPasswd] = useState("")
-    const [registerEmail, setRegisterEmail] = useState("")
-    const [registerPasswd, setRegisterPasswd] = useState("")
-
 
     const provider = new GoogleAuthProvider()
     const signInWithGoogle = () => {
@@ -66,26 +60,48 @@ const FireProvider: FC = ({ children }) => {
 
     onAuthStateChanged(auth, (currentUser) => {
         setUser(currentUser)
+        console.log(currentUser)
     })
 
-    const login = async () => {
+    const onSubmitLogin = async (values: any) => {
         try {
-            const user = await signInWithEmailAndPassword(auth, loginEmail, loginPasswd)
+            const user = await signInWithEmailAndPassword(auth, values.loginEmail, values.loginPasswd)
             console.log(user)
         } catch (error) {
-            console.log(error.message)
+            console.log(error)
         }
     }
-    const register = async () => {
+
+    const onSubmitRegister = async (values: any) => {
         try {
-            const user = await createUserWithEmailAndPassword(auth, registerEmail, registerPasswd)
+            const user = await createUserWithEmailAndPassword(auth, values.registerEmail, values.registerPasswd)
             console.log(user)
-        } catch (error) {
-            console.log(error.message)
-        }
 
+
+        } catch (error) {
+            console.log(error)
+        }
     }
 
+    const validateSchema = Yup.object().shape({
+        registerEmail: Yup.string().email().required(),
+        registerPasswd: Yup.string().min(8).required(),
+        loginEmail: Yup.string().email().required(),
+        loginPasswd: Yup.string().min(8).required(),
+
+    });
+
+    const isLogged = () => {
+        if (user) {
+            window.location.href = "/"
+        } else {
+            window.location.href = "/register"
+        }
+    }
+
+    const logout = async () => {
+        await signOut(auth)
+    }
 
     useEffect(() => {
         const loadStoreAuth = () => {
@@ -101,18 +117,16 @@ const FireProvider: FC = ({ children }) => {
     return (
         <FireContext.Provider value={{
             signInWithGoogle,
-            signed: !!user,
             user,
             loginEmail,
             setLoginEmail,
             loginPasswd,
             setLoginPasswd,
-            registerEmail,
-            setRegisterEmail,
-            registerPasswd,
-            setRegisterPasswd,
-            register,
-            login,
+            onSubmitLogin,
+            onSubmitRegister,
+            validateSchema,
+            isLogged,
+            logout,
         }}>
             {children}
         </FireContext.Provider>
