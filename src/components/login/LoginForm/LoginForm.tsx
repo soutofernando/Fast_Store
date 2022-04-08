@@ -6,12 +6,12 @@ import Icon from 'src/components/ui/Icon'
 
 const LoginForm = () => {
 
-    const { onSubmitLogin, validateSchema } = useContext(FireContext)
+    const { onSubmitLogin, validateSchemaLogin } = useContext(FireContext)
 
     return (
         <div>
             <Formik
-                validationSchema={validateSchema}
+                validationSchema={validateSchemaLogin}
                 initialValues={{
                     loginEmail: "",
                     loginPasswd: ""

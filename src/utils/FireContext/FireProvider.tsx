@@ -8,35 +8,25 @@ interface Props {
     onSubmitLogin(user: any): void
     signInWithGoogle(user: any): void
     user?: any
-    loginEmail: string
-    setLoginEmail(email: string): void
-    loginPasswd: string
-    setLoginPasswd(passwd: string): void
     onSubmitRegister(e: any): void
-    validateSchema: any
-    isLogged(validate: any): void
+    validateSchemaRegister: any
     logout(sign: any): void
+    validateSchemaLogin: any
 }
 
 export const FireContext = createContext<Props>({
     onSubmitLogin: () => { },
     signInWithGoogle: () => { },
-    user: [],
-    loginEmail: "",
-    setLoginEmail: () => { },
-    loginPasswd: "",
-    setLoginPasswd: () => { },
+    user: {},
     onSubmitRegister: () => { },
-    validateSchema: () => { },
-    isLogged: () => { },
+    validateSchemaRegister: () => { },
     logout: () => { },
+    validateSchemaLogin: () => { },
 })
 
 const FireProvider: FC = ({ children }) => {
 
-    const [user, setUser] = useState<any>(null)
-    const [loginEmail, setLoginEmail] = useState("")
-    const [loginPasswd, setLoginPasswd] = useState("")
+    const [user, setUser] = useState<any>({})
 
     const provider = new GoogleAuthProvider()
     const signInWithGoogle = () => {
@@ -60,44 +50,44 @@ const FireProvider: FC = ({ children }) => {
 
     onAuthStateChanged(auth, (currentUser) => {
         setUser(currentUser)
-        console.log(currentUser)
+
     })
 
     const onSubmitLogin = async (values: any) => {
-        try {
-            const user = await signInWithEmailAndPassword(auth, values.loginEmail, values.loginPasswd)
-            console.log(user)
-        } catch (error) {
-            console.log(error)
-        }
+
+        await signInWithEmailAndPassword(auth, values.loginEmail, values.loginPasswd).
+            then(() => {
+
+            }).
+            catch(
+                (error) => {
+                    console.log(error.message)
+                }
+            )
     }
 
     const onSubmitRegister = async (values: any) => {
-        try {
-            const user = await createUserWithEmailAndPassword(auth, values.registerEmail, values.registerPasswd)
-            console.log(user)
-
-
-        } catch (error) {
-            console.log(error)
-        }
+        await createUserWithEmailAndPassword(auth, values.registerEmail, values.registerPasswd).
+            then(async () => {
+                window.location.href = "/"
+            }).
+            catch(
+                (error) => {
+                    console.log(error.message)
+                }
+            )
     }
 
-    const validateSchema = Yup.object().shape({
+    const validateSchemaRegister = Yup.object().shape({
         registerEmail: Yup.string().email().required(),
         registerPasswd: Yup.string().min(8).required(),
+
+    });
+    const validateSchemaLogin = Yup.object().shape({
         loginEmail: Yup.string().email().required(),
         loginPasswd: Yup.string().min(8).required(),
 
     });
-
-    const isLogged = () => {
-        if (user) {
-            window.location.href = "/"
-        } else {
-            window.location.href = "/register"
-        }
-    }
 
     const logout = async () => {
         await signOut(auth)
@@ -111,6 +101,7 @@ const FireProvider: FC = ({ children }) => {
                 setUser(sessionUser)
             }
         }
+        console.log(user)
         loadStoreAuth()
     }, [])
 
@@ -118,15 +109,11 @@ const FireProvider: FC = ({ children }) => {
         <FireContext.Provider value={{
             signInWithGoogle,
             user,
-            loginEmail,
-            setLoginEmail,
-            loginPasswd,
-            setLoginPasswd,
             onSubmitLogin,
             onSubmitRegister,
-            validateSchema,
-            isLogged,
+            validateSchemaRegister,
             logout,
+            validateSchemaLogin,
         }}>
             {children}
         </FireContext.Provider>
