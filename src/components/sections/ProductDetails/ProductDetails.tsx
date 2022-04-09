@@ -1,7 +1,6 @@
 import { sendAnalyticsEvent, useSession } from '@faststore/sdk'
 import { graphql } from 'gatsby'
 import React, { useEffect, useState } from 'react'
-import { DiscountBadge } from 'src/components/ui/Badge'
 import Breadcrumb from 'src/components/ui/Breadcrumb'
 import BuyButton from 'src/components/ui/BuyButton'
 import { Image } from 'src/components/ui/Image'
@@ -120,7 +119,6 @@ function ProductDetails({ product: staleProduct }: Props) {
         <header className="product-details__title">
           <ProductTitle
             title={<h1 className="title-product">{name.toUpperCase()}</h1>}
-            label={<DiscountBadge listPrice={listPrice} spotPrice={lowPrice} />}
             refNumber={productId}
           />
           <div className='pl-6'>
@@ -137,12 +135,14 @@ function ProductDetails({ product: staleProduct }: Props) {
         </header>
 
         <section className="product-details__image">
-          <Breadcrumb breadcrumbList={breadcrumbs.itemListElement} />
           <Image
+            width={1800}
+            height={1050}
             baseUrl={productImages[0].url}
             alt={productImages[0].alternateName}
             {...imgOptions}
           />
+          <Breadcrumb breadcrumbList={breadcrumbs.itemListElement} />
         </section>
 
         <section className="product-details__settings">
@@ -153,6 +153,10 @@ function ProductDetails({ product: staleProduct }: Props) {
               non-composited animation violation due to the button transitioning its
               background color when changing from its initial disabled to active state.
               See full explanation on commit https://git.io/JyXV5. */}
+          <div className='block mt-6'>
+            <div className='font-bold'>***UNISSEX, FORMATO GRANDE***</div>
+            <div className='font-extralight'> Para pés mais finos, recomendamos que compre um tamanho menor do que o de costume.</div>
+          </div>
           <div className="mt-10">
             {isValidating ? (
               <AddToCartLoadingSkeleton />

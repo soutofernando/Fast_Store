@@ -83,8 +83,8 @@ function Navbar() {
             />
             <LinkGatsby
               to="/"
-              aria-label="Go to Faststore home"
-              title="Go to Faststore home"
+              aria-label="Go to Adidas home"
+              title="Go to Adidas home"
               className="navbar__logo"
             >
               <section className='media_logo_navbar'>

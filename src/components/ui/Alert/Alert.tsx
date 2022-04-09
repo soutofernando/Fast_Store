@@ -51,7 +51,7 @@ function Alert({
 
       {dismissible && (
         <Button data-alert-button aria-label="Close" onClick={handleClose} >
-          <Icon name="X" width={18} height={18} weight="bold" />
+          <Icon color='white' name="X" width={18} height={18} weight="bold" />
         </Button>
       )}
     </UIAlert>

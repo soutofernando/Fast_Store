@@ -4,7 +4,7 @@
   padding-top: var(--space-6);
   padding-bottom: var(--space-6);
   text-align: center;
-  background-color: var(--color-secondary-4);
+  background-color: black;
 
   [data-banner-content] {
     display: flex;
@@ -12,9 +12,19 @@
     align-items: center;
   }
 
-  h2, p {
+  h2 {
     display: inline;
     color: var(--color-text-inverse);
+    font-size: 27px;
+
+    @include media(">=notebook") { display: block; }
+  }
+  p {
+    display: inline;
+    color: var(--color-text-inverse);
+    font-size: 20px;
+    font-weight: 200;
+    margin-top: 10px;
 
     @include media(">=notebook") { display: block; }
   }

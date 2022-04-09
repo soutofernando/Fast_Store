@@ -5,9 +5,9 @@ import { Link } from 'gatsby'
 
 const LoginInfo = () => {
     return (
-        <div>
+        <div className='w-full'>
             <div>
-                <span className="text-4xl font-black">ENTRE PARA O CLUBE. RECEBA BENEFÍCIOS</span>
+                <span className=" text-2xl md:text-4xl font-black">ENTRE PARA O CLUBE. RECEBA BENEFÍCIOS</span>
             </div>
             <div className='mt-4'>
                 <span>Entre para o adiclub e ganhe benefícios hoje:</span>
@@ -47,7 +47,7 @@ const LoginInfo = () => {
             <div className='mt-4'>
                 <span>Quer saber mais sobre o adiClub?</span>
             </div>
-            <div className='mt-4'>
+            <div className='mt-4 mb-4'>
                 <Link to="/register">
                     <Button className='bg-black text-white p-4 font-mono font-black hover:text-gray-600 '>
                         <div className='flex'>ENTRE PARA O CLUBE<div className='ml-4'>

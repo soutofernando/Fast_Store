@@ -2,6 +2,7 @@ import { Banner, BannerContent, BannerLink } from '@faststore/ui'
 import React from 'react'
 import { LinkButton } from 'src/components/ui/Button'
 import type { InputHTMLAttributes } from 'react'
+import Icon from 'src/components/ui/Icon'
 
 import Section from '../Section'
 
@@ -45,7 +46,7 @@ function BannerText({
           </div>
           <BannerLink>
             <LinkButton to={actionPath} inverse>
-              {actionLabel} 
+              {actionLabel} <Icon name="ArrowRight" width={14} height={14} />
             </LinkButton>
           </BannerLink>
         </BannerContent>

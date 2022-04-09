@@ -35,18 +35,18 @@ const teams = [
         team: "manchesterUnited",
         img: "https://brand.assets.adidas.com/image/upload/f_auto,q_auto,fl_lossy/ptBR/Images/picker_ManchesterUnited_tcm194-762991.png",
     },
-  
+
 
 ]
 
 
 const TeamSection = () => {
     return (
-        <div>
-            <Section>
+        <Section>
+            <div>
                 <TeamImg teams={teams} />
-            </Section>
-        </div>
+            </div>
+        </Section>
     )
 }
 

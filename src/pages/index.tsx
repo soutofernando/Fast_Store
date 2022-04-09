@@ -91,10 +91,10 @@ function Page(props: Props) {
       <ProductTiles products={products?.slice(5, 8)} title="Just Arrived" />
 
       <BannerText
-        title="Receive our news and promotions in advance."
-        caption="Enjoy and get 10% off on your first purchase."
-        actionPath="/"
-        actionLabel="Call to action"
+        title="ADICLUB TEM DESCONTO ESPECIAL"
+        caption="Se você é parte do Clube, vem aproveitar 20% de desconto em um catálogo especial que preparamos para você."
+        actionPath="/register"
+        actionLabel="CADASTRA-SE AGORA"
       />
 
       <ProductShelf

@@ -19,7 +19,7 @@ const Cart = () => {
 
     return (
         <Section>
-            <div className="xl:flex justify-center mt-4 mr-48 ml-48">
+            <div className="ml-6 mr-6 lg:flex lg:justify-center mt-4 lg:mr-48 lg:ml-48">
                 <div className=" block">
                     <div>
                         <CartHeader subTotal={subTotal} totalItems={totalItems} />
@@ -28,7 +28,7 @@ const Cart = () => {
                         {items.map((item) => (<div><CartItem item={item} /></div>))}
                     </div>
                 </div>
-                <div className="ml-14 mt-16 ">
+                <div className="lg:ml-14 mt-16 ">
                     <OrderSummary
                         subTotal={subTotal}
                         total={total}

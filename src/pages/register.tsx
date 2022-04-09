@@ -11,8 +11,8 @@ const register = () => {
 
     return (
         <Section>
-            <div className='xl:flex justify-center mt-4 mr-48 ml-48'>
-                <div className='block w-1/2'>
+            <div className='block ml-6 mr-6 mt-4 lg:flex lg:justify-center lg:mr-48 lg:ml-48'>
+                <div className='lg:block lg:w-1/2'>
                     <div>
                         <RegisterHeader />
                     </div>
@@ -20,7 +20,7 @@ const register = () => {
                         <RegisterForm />
                     </div>
                 </div>
-                <div className='w-5/12 ml-14'>
+                <div className='lg:w-5/12 lg:ml-14'>
                     <LoginInfo />
                 </div>
             </div>
