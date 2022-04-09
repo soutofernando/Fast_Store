@@ -46,7 +46,7 @@ function BannerText({
           </div>
           <BannerLink>
             <LinkButton to={actionPath} inverse>
-              {actionLabel} <Icon name="ArrowRight" width={14} height={14} />
+              {actionLabel} <Icon name="ArrowRight" weight={"bold"} width={16} height={16} />
             </LinkButton>
           </BannerLink>
         </BannerContent>
