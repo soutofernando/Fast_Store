@@ -12,7 +12,7 @@ function Page() {
     <>
       <GatsbySeo noindex nofollow />
 
-      <div>loading...</div>
+      <div className='text-2xl font-extrabold flex justify-center p-4'>AGUARDE ENQUANTO VOCE ESTÁ SENDO REDIRECIONADO PARA FINALIZAR SUA COMPRA!</div>
     </>
   )
 }

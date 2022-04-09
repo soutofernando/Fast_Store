@@ -5,78 +5,78 @@ import Accordion, { AccordionItem } from 'src/components/ui/Accordion'
 
 const links = [
   {
-    title: 'Our company',
+    title: 'PRODUTOS',
     items: [
       {
         href: '/',
-        name: 'About Us',
+        name: 'Calçados',
       },
       {
         href: '/',
-        name: 'Our Blog',
+        name: 'Tênis',
       },
       {
         href: '/',
-        name: 'Stores',
+        name: 'Roupas',
       },
       {
         href: '/',
-        name: 'Work With Us',
+        name: 'Acessórios',
       },
     ],
   },
   {
-    title: 'Orders & Purchases',
+    title: 'ESPORTES',
     items: [
       {
         href: '/',
-        name: 'Check Order Status',
+        name: 'Futebol',
       },
       {
         href: '/',
-        name: 'Returns and Exchanges',
+        name: 'Flamengo',
       },
       {
         href: '/',
-        name: 'Product Recall',
+        name: 'São Paulo',
       },
       {
         href: '/',
-        name: 'Gift Cards',
+        name: 'Internacional',
       },
     ],
   },
   {
-    title: 'Support & Services',
+    title: 'SUPORTE',
     items: [
       {
         href: '/',
-        name: 'Support Center',
+        name: 'Podemos ajudar?',
       },
       {
         href: '/',
-        name: 'Schedule a Service',
+        name: 'Atendimento ao Cliente',
       },
       {
         href: '/',
-        name: 'Contact Us',
+        name: 'Duvidas Frequentes',
       },
     ],
   },
   {
-    title: 'Partnerships',
+    title: 'COLEÇÕES',
     items: [
       {
         href: '/',
-        name: 'Affiliate Program',
+        name: 'Yeezy',
       },
       {
         href: '/',
-        name: 'Advertise with US',
+        name: 'Ultraboost',
       },
       {
         href: '/',
-        name: 'Market Place',
+        name: 'Originals',
       },
     ],
   },
@@ -139,7 +139,7 @@ function FooterLinks() {
         <div className="footer__links-columns">
           {links.map((section) => (
             <nav key={section.title}>
-              <p className="title-sub-subsection">{section.title}</p>
+              <p className="text-lg font-black">{section.title}</p>
               <LinksList items={section.items} />
             </nav>
           ))}

@@ -23,7 +23,7 @@ function Footer() {
         <FooterLinks />
 
         <section className="footer__social">
-          <p className="title-sub-subsection">Follow us</p>
+          <p className="title-sub-subsection">Siga-nos</p>
           <UIList variant="unordered">
             <li>
               <Link
@@ -91,9 +91,9 @@ function Footer() {
         <UIIcon
           component={
             <img
-              src="/FastStore.png"
-              alt="FastStore icon"
-              width="124px"
+              src="https://logosmarcas.net/wp-content/uploads/2020/04/Adidas-Logo.png"
+              alt="Adidas icon"
+              width="110px"
               height="34px"
               loading="lazy"
             />
@@ -101,7 +101,7 @@ function Footer() {
         />
 
         <UIPaymentMethods>
-          <p className="title-sub-subsection">Payment Methods</p>
+          <p className="title-sub-subsection">Metodos de pagamento</p>
           <UIList>
             <li>
               <Icon width="34px" height="24px" name="Visa" />
@@ -139,13 +139,13 @@ function Footer() {
         </UIPaymentMethods>
 
         <div className="footer__copyright / text-body-small">
-          <p>This website uses VTEX technology</p>
+          <p>adidas do Brasil LTDA</p>
           <p>
-            In-store price may vary. Prices and offers are subject to change.
-            2021 Store name. All rights reserved. Store is a trademark of Store
-            and its affiliated companies.
+            CNPJ/MF nº 42.274.696/0025-61 – Inscrição Estadual  298.144.017.112 Atendimento
+            ao cliente: atendimentoadidas@adidas.com  / 08008 234 327 ou 11 5546 3700
           </p>
-          <address>Mount St, 000, New York / NY - 00000.</address>
+          <address>Endereço:
+            Rua Pataxós nº 241, Galpão 1, Bairro Jardim Magali, Município de Embú - SP, CEP 06833-073</address>
         </div>
       </div>
     </footer>

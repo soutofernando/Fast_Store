@@ -13,6 +13,8 @@ interface Props {
     validateSchemaRegister: any
     logout(sign: any): void
     validateSchemaLogin: any
+    keepconnected: boolean
+    setKeepConnected(res: boolean): void
 }
 
 export const FireContext = createContext<Props>({
@@ -23,11 +25,14 @@ export const FireContext = createContext<Props>({
     validateSchemaRegister: () => { },
     logout: () => { },
     validateSchemaLogin: () => { },
+    keepconnected: false,
+    setKeepConnected: () => { },
 })
 
 const FireProvider: FC = ({ children }) => {
 
     const [user, setUser] = useState<any>({})
+    const [keepconnected, setKeepConnected] = useState(false)
 
     const provider = new GoogleAuthProvider()
     const signInWithGoogle = () => {
@@ -37,8 +42,10 @@ const FireProvider: FC = ({ children }) => {
                 const token = credential?.accessToken
                 const user = res.user
                 setUser(user)
-                sessionStorage.setItem("@AuthFirebase:token", token!)
-                sessionStorage.setItem("@AuthFirebase:user", JSON.stringify(user))
+                if (keepconnected) {
+                    sessionStorage.setItem("@AuthFirebase:token", token!)
+                    sessionStorage.setItem("@AuthFirebase:user", JSON.stringify(user))
+                }
             }).
             catch((error) => {
                 //const errorCode = error.code
@@ -121,6 +128,8 @@ const FireProvider: FC = ({ children }) => {
             validateSchemaRegister,
             logout,
             validateSchemaLogin,
+            keepconnected,
+            setKeepConnected,
         }}>
             {children}
         </FireContext.Provider>

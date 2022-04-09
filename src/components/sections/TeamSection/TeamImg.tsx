@@ -16,8 +16,8 @@ const TeamImg = ({ teams }: teams) => {
                 <span className="font-mono font-semibold flex justify-center p-3">ENCONTRE SEU TIME</span>
                 <div className="flex">
                     {
-                        teams.map((item: any) => (
-                            <div className="pl-6 pb-8">
+                        teams.map((item: any, key: any) => (
+                            <div key={key} className="pl-6 pb-8">
                                 <img width="51px" src={item.img} />
                             </div>
                         ))}
