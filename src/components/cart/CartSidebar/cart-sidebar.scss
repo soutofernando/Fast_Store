@@ -1,11 +1,11 @@
 .cart-sidebar {
-  display: flex;
-  flex-direction: column;
+  display: block;
   height: 100%;
   overflow: auto;
   background-color: var(--bg-neutral-light);
+  
 
-  > header {
+  >header {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -20,6 +20,9 @@
   .cart-sidebar__title {
     display: flex;
     align-items: center;
+    margin-left: 12px;
+    margin-right: 12px;
+    
 
     p {
       margin-right: var(--space-2);
@@ -27,21 +30,28 @@
     }
   }
 
-  > [data-store-list] {
+  >[data-store-list] {
     display: flex;
     flex-direction: column;
     padding: var(--page-padding-phone);
     overflow: auto;
     row-gap: var(--space-2);
+    margin-left: 12px;
+    margin-right: 12px;
+    
   }
 
-  > footer {
+  >footer {
     margin-top: auto;
     background-color: var(--bg-neutral-lightest);
     box-shadow: 0 0 6px rgb(0 0 0 / 20%);
+    margin-left: 12px;
+    margin-right: 12px;
+    padding: 12px;
 
     [data-store-button] {
       width: 100%;
+
     }
   }
 }

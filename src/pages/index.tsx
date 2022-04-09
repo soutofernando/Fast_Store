@@ -94,7 +94,7 @@ function Page(props: Props) {
         title="ADICLUB TEM DESCONTO ESPECIAL"
         caption="Se você é parte do Clube, vem aproveitar 20% de desconto em um catálogo especial que preparamos para você."
         actionPath="/register"
-        actionLabel="CADASTRA-SE AGORA"
+        actionLabel="CADASTRA-SE"
       />
 
       <ProductShelf

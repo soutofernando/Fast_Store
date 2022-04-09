@@ -1,4 +1,3 @@
-import { List } from '@faststore/ui'
 import React, { useRef } from 'react'
 import Alert from 'src/components/ui/Alert'
 import { Badge } from 'src/components/ui/Badge'
@@ -10,11 +9,11 @@ import { useCheckoutButton } from 'src/sdk/cart/useCheckoutButton'
 import { useUI } from 'src/sdk/ui'
 import Icon from 'src/components/ui/Icon'
 
-import CartItem from '../CartItem'
 import EmptyCart from '../EmptyCart'
 import OrderSummary from '../OrderSummary'
 
 import './cart-sidebar.scss'
+import { Link } from 'gatsby'
 
 type Callback = () => unknown
 
@@ -39,7 +38,7 @@ function CartSidebar() {
     >
       <header data-testid="cart-sidebar">
         <div className="cart-sidebar__title">
-          <p className="title-display">Your Cart</p>
+          <p className="title-display">Seu Carrinho</p>
           <Badge variant="info" small>
             {totalItems}
           </Badge>
@@ -51,39 +50,42 @@ function CartSidebar() {
           onClick={() => dismissTransition.current?.()}
         />
       </header>
-      <Alert icon={<Icon name="Truck" width={24} height={24} />}>
-        Free shiping starts at $300
+      <Alert className='pr-4' icon={<Icon name="Truck" width={24} height={24} />}>
+        Aproveite a promoção de frete grátis
       </Alert>
 
       {isEmpty ? (
         <EmptyCart onDismiss={() => dismissTransition.current?.()} />
       ) : (
         <>
-          <List>
-            {items.map((item) => (
-              <li key={item.id}>
-                <CartItem item={item} />
-              </li>
-            ))}
-          </List>
+          <footer >
+            <div className='mb-10'>
+              <Link to="/">
+                <Button className='bg-black text-white p-4 font-mono font-black hover:text-gray-600 '>
+                  <div className='flex justify-between'>CONTINUAR COMPRANDO<div className='ml-4'>
+                    <Icon name='ArrowRight' width={25} height={25} />
+                  </div>
+                  </div>
+                </Button>
+              </Link>
+            </div>
 
-          <footer>
             <OrderSummary
               subTotal={subTotal}
               total={total}
               numberOfItems={totalItems}
               checkoutButton={
                 <Button
-                  variant="primary"
+                  className='bg-black text-white flex p-4 justify-between text-center mt-10'
                   icon={
                     !isValidating && (
-                      <Icon name="ArrowRight" width={18} height={18} />
+                      <Icon className='mt-1' name="ArrowRight" width={18} height={18} />
                     )
                   }
                   iconPosition="right"
                   {...btnProps}
                 >
-                  {isValidating ? 'Loading...' : 'Checkout'}
+                  {isValidating ? 'Carregando...' : 'FINALIZAR'}
                 </Button>
               }
             />

@@ -36,8 +36,9 @@ const login = () => {
           </div>
         </div>
       </div>
-
-      <FooterLogin />
+      <div className="mb-10 mt-10">
+        <FooterLogin />
+      </div>
 
     </Section>
   )

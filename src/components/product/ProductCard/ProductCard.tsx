@@ -89,15 +89,6 @@ function ProductCard({
         />
         <div className="product-card__prices">
           <Price
-            value={listPrice}
-            formatter={useFormattedPrice}
-            testId="list-price"
-            data-value={listPrice}
-            variant="listing"
-            classes="text-body-small"
-            SRText="Original price:"
-          />
-          <Price
             value={spotPrice}
             formatter={useFormattedPrice}
             testId="price"
@@ -122,7 +113,7 @@ function ProductCard({
             Out of stock
           </Badge>
         ) : (
-          <DiscountBadge small listPrice={listPrice} spotPrice={spotPrice} />
+          ""
         )}
       </UICardContent>
       {!!buyButton && <UICardActions>{buyButton}</UICardActions>}
