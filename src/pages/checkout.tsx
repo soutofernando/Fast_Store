@@ -1,20 +1,23 @@
-import React, { useEffect } from 'react'
-import { GatsbySeo } from 'gatsby-plugin-next-seo'
+import React from 'react'
+import CheckoutNav from 'src/components/checkout/CheckoutNav/CheckoutNav'
+import CheckoutPhases from 'src/components/checkout/CheckoutPhases/CheckoutPhases'
+import Section from 'src/components/sections/Section'
 
-import storeConfig from '../../store.config'
+const checkout = () => {
 
-function Page() {
-  useEffect(() => {
-    window.location.href = storeConfig.checkoutUrl
-  }, [])
 
   return (
-    <>
-      <GatsbySeo noindex nofollow />
-
-      <div className='text-2xl font-extrabold flex justify-center p-4'>AGUARDE ENQUANTO VOCE ESTÁ SENDO REDIRECIONADO PARA FINALIZAR SUA COMPRA!</div>
-    </>
+    <Section>
+      <CheckoutNav />
+      <div  className='lg:mr-48 lg:ml-48'>
+        <CheckoutPhases />
+      </div>
+      <hr/>
+      <div className='lg:mr-48 lg:ml-48'>
+        sdsd
+      </div>
+    </Section>
   )
 }
 
-export default Page
+export default checkout

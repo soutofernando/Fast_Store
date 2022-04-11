@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useContext, useRef } from 'react'
 import Alert from 'src/components/ui/Alert'
 import { Badge } from 'src/components/ui/Badge'
 import Button from 'src/components/ui/Button'
@@ -14,6 +14,7 @@ import OrderSummary from '../OrderSummary'
 
 import './cart-sidebar.scss'
 import { Link } from 'gatsby'
+import { FireContext } from 'src/utils/FireContext/FireProvider'
 
 type Callback = () => unknown
 
@@ -24,6 +25,8 @@ function CartSidebar() {
   const dismissTransition = useRef<Callback | undefined>()
 
   const { items, totalItems, isValidating, subTotal, total } = cart
+
+  const { user } = useContext(FireContext)
 
   const isEmpty = items.length === 0
 
@@ -69,12 +72,40 @@ function CartSidebar() {
                 </Button>
               </Link>
             </div>
-
+            {user ? <div>
+              <Button
+                className='bg-black text-white flex p-4 justify-between text-center mt-10 w-full'
+                icon={
+                  !isValidating && (
+                    <Icon className='mt-1' name="ArrowRight" width={18} height={18} />
+                  )
+                }
+                iconPosition="right"
+                onClick={() => window.location.href = "/delivery"}
+              >
+                {isValidating ? 'Carregando...' : 'FINALIZAR'}
+              </Button>
+            </div> :
+              <div>
+                <Button
+                  className='bg-black text-white flex p-4 justify-between text-center mt-10 w-full'
+                  icon={
+                    !isValidating && (
+                      <Icon className='mt-1' name="ArrowRight" width={18} height={18} />
+                    )
+                  }
+                  iconPosition="right"
+                  onClick={() => window.location.href = "/login"}
+                >
+                  {isValidating ? 'Carregando...' : 'FINALIZAR'}
+                </Button>
+              </div>
+            }
             <OrderSummary
               subTotal={subTotal}
               total={total}
               numberOfItems={totalItems}
-              checkoutButton={
+              checkoutButton={user ?
                 <Button
                   className='bg-black text-white flex p-4 justify-between text-center mt-10'
                   icon={
@@ -84,6 +115,19 @@ function CartSidebar() {
                   }
                   iconPosition="right"
                   {...btnProps}
+                >
+                  {isValidating ? 'Carregando...' : 'FINALIZAR'}
+                </Button>
+                :
+                <Button
+                  className='bg-black text-white flex p-4 justify-between text-center mt-10'
+                  icon={
+                    !isValidating && (
+                      <Icon className='mt-1' name="ArrowRight" width={18} height={18} />
+                    )
+                  }
+                  iconPosition="right"
+                  onClick={() => window.location.href = "/login"}
                 >
                   {isValidating ? 'Carregando...' : 'FINALIZAR'}
                 </Button>

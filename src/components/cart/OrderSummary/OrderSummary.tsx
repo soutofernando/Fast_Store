@@ -1,9 +1,11 @@
-import type { ReactNode } from 'react'
+import { ReactNode } from 'react'
 import React from 'react'
 import { List } from '@faststore/ui'
 import { useFormattedPrice } from 'src/sdk/product/useFormattedPrice'
 
 import './order-summary.scss'
+
+
 
 interface OrderSummaryProps {
   subTotal: number
@@ -16,18 +18,16 @@ function OrderSummary({
   subTotal,
   total,
   numberOfItems,
-  checkoutButton,
 }: OrderSummaryProps) {
 
   return (
     <List className="order-summary" data-order-summary>
-      {checkoutButton}
       <div className='mt-10 border p-4'>
         <div className='font-black text-xl'>
           RESUMO DO PEDIDO
         </div>
         <div className='flex justify-between mt-3'>
-          <span>{numberOfItems <= 1 ? <div>{numberOfItems} PRODUTO</div> : <div>{numberOfItems} PRODUTOS</div> } </span>
+          <span>{numberOfItems <= 1 ? <div>{numberOfItems} PRODUTO</div> : <div>{numberOfItems} PRODUTOS</div>} </span>
           <span>{useFormattedPrice(subTotal)}</span>
         </div>
         <div className='flex justify-between mt-3'>

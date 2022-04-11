@@ -1,4 +1,5 @@
 import React from 'react'
+import Navbar from 'src/components/common/Navbar'
 import FooterLogin from 'src/components/login/FooterLogin/FooterLogin'
 import KeepConnected from 'src/components/login/KeepConnected/KeepConnected'
 import LoginForm from 'src/components/login/LoginForm/LoginForm'
@@ -12,6 +13,7 @@ import Section from 'src/components/sections/Section'
 const login = () => {
   return (
     <Section>
+      <Navbar />
       <div className="mr-6 ml-6 block mt-4 lg:flex lg:justify-around lg:mr-48 lg:ml-48">
         <div className='md:block md:w-1/2'>
           <div>

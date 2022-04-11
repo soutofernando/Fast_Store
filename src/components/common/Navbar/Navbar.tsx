@@ -81,18 +81,9 @@ function Navbar() {
               icon={<Icon name="List" width={32} height={32} />}
               onClick={() => setShowMenu(true)}
             />
-            <LinkGatsby
-              to="/"
-              aria-label="Go to Adidas home"
-              title="Go to Adidas home"
-              className="navbar__logo"
-            >
-              <section className='media_logo_navbar'>
-                <div className="w-16 absolute top-12 left-8">
-                  <Logo />
-                </div>
-              </section>
-            </LinkGatsby>
+              <div className="left-20 relative w-16 lg:absolute lg:top-6 lg:left-8">
+                <Logo />
+              </div>
           </>
         )}
         <div className="flex justify-end">

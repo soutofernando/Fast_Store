@@ -3,7 +3,11 @@ import React from 'react'
 import logoImg from './logo.png'
 
 function Logo() {
-  return <img src={logoImg} alt="Adidas logo" />
+  return (
+    <a href='/'>
+      <img src={logoImg} alt="Adidas logo" />
+    </a>
+  )
 }
 
 export default Logo

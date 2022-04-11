@@ -13,6 +13,7 @@ import type { HomePageQueryQuery } from '@generated/graphql'
 import Alert from 'src/components/common/Alert'
 import TeamSection from 'src/components/sections/TeamSection/TeamSection'
 import Section from 'src/components/sections/Section'
+import Navbar from 'src/components/common/Navbar'
 
 export type Props = PageProps<HomePageQueryQuery>
 
@@ -44,7 +45,7 @@ function Page(props: Props) {
           description: site?.siteMetadata?.description ?? '',
         }}
       />
-    <JsonLd
+      <JsonLd
         json={{
           '@context': 'https://schema.org',
           '@type': 'WebSite',
@@ -68,6 +69,9 @@ function Page(props: Props) {
         If needed, wrap your component in a <Section /> component
         (not the HTML tag) before rendering it here.
       */}
+      <Section>
+        <Navbar />
+      </Section>
       <Section>
         <Alert>
           Entre gratuitamente para o adiClub e ganhe 15% de desconto.&nbsp;<span>Entre para o clube</span>

@@ -8,13 +8,16 @@ import * as Yup from 'yup'
 interface Props {
     onSubmitLogin(user: any): void
     signInWithGoogle(user: any): void
-    user?: any
+    user?: {}
     onSubmitRegister(e: any): void
     validateSchemaRegister: any
     logout(sign: any): void
     validateSchemaLogin: any
     keepconnected: boolean
     setKeepConnected(res: boolean): void
+    inRegister: boolean
+    setInRegister(e: boolean): void
+
 }
 
 export const FireContext = createContext<Props>({
@@ -22,17 +25,20 @@ export const FireContext = createContext<Props>({
     signInWithGoogle: () => { },
     user: {},
     onSubmitRegister: () => { },
-    validateSchemaRegister: () => { },
+    validateSchemaRegister: {},
     logout: () => { },
     validateSchemaLogin: () => { },
     keepconnected: false,
     setKeepConnected: () => { },
+    inRegister: false,
+    setInRegister: () => { },
 })
 
 const FireProvider: FC = ({ children }) => {
 
     const [user, setUser] = useState<any>({})
     const [keepconnected, setKeepConnected] = useState(false)
+    const [inRegister, setInRegister] = useState(false)
 
     const provider = new GoogleAuthProvider()
     const signInWithGoogle = () => {
@@ -81,20 +87,20 @@ const FireProvider: FC = ({ children }) => {
                 navigate("/")
             }).
             catch(
-                (error) => {
-                    console.log(error.message)
+                () => {
+                    setInRegister(true)
                 }
             )
     }
 
     const validateSchemaRegister = Yup.object().shape({
-        registerEmail: Yup.string().email().required(),
-        registerPasswd: Yup.string().min(8).required(),
+        registerEmail: Yup.string().email("Por favor, insira um endereço de e-mail válido").required("Por favor, insira um endereço de e-mail válido"),
+        registerPasswd: Yup.string().min(8).required("Por favor, insira uma senha"),
 
     });
     const validateSchemaLogin = Yup.object().shape({
-        loginEmail: Yup.string().email().required(),
-        loginPasswd: Yup.string().min(8).required(),
+        loginEmail: Yup.string().email().required("Por favor, insira um endereço de e-mail válido"),
+        loginPasswd: Yup.string().min(8).required("Por favor, insira uma senha"),
 
     });
 
@@ -116,6 +122,7 @@ const FireProvider: FC = ({ children }) => {
                 setUser(sessionUser)
             }
         }
+        console.log(window.location.pathname)
         loadStoreAuth()
     }, [])
 
@@ -130,6 +137,8 @@ const FireProvider: FC = ({ children }) => {
             validateSchemaLogin,
             keepconnected,
             setKeepConnected,
+            inRegister,
+            setInRegister,
         }}>
             {children}
         </FireContext.Provider>

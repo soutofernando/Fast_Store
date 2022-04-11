@@ -6,7 +6,7 @@ import Icon from 'src/components/ui/Icon'
 
 const RegisterForm = () => {
 
-    const { onSubmitRegister, validateSchemaRegister } = useContext(FireContext)
+    const { onSubmitRegister, validateSchemaRegister, inRegister } = useContext(FireContext)
 
     return (
         <div>
@@ -42,6 +42,9 @@ const RegisterForm = () => {
                         />
                         {errors.registerPasswd && touched.registerPasswd &&
                             <span className='text-red-600 font-mono text-sm font-black flex'><Icon name='X' width={14} height={14} weight={"bold"} className="mt-1 mr-2" />{errors.registerPasswd}</span>}
+                    </div>
+                    <div className='mt-4'>
+                        {inRegister ? <span className='text-red-600 font-mono text-sm font-black flex'><Icon name='X' width={14} height={14} weight={"bold"} className="mt-1 mr-2" />Email e senha já registrados.</span> : '' }
                     </div>
                     <div className='mt-4 mb-4'>
                         <Button type="submit" className='bg-black text-white p-4 font-mono font-black hover:text-gray-600 '>
