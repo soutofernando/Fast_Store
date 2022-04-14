@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import CouponInput from 'src/components/cart/CouponInput/CouponInput'
 import NeedHelp from 'src/components/cart/NeedHelp/NeedHelp'
 import OrderSummary from 'src/components/cart/OrderSummary'
 import PayWith from 'src/components/cart/PayWith/PayWith'
+import CheckoutDetails from 'src/components/checkout/CheckoutDetails/CheckoutDetails'
 import CheckoutNav from 'src/components/checkout/CheckoutNav/CheckoutNav'
 import CheckoutPhases from 'src/components/checkout/CheckoutPhases/CheckoutPhases'
 import DetailsOrder from 'src/components/delivery/DetailsOrder/DetailsOrder'
@@ -10,12 +11,14 @@ import PaymentForm from 'src/components/payment/PaymentForm/PaymentForm'
 import PaymentHeader from 'src/components/payment/PaymentHeader/PaymentHeader'
 import Section from 'src/components/sections/Section'
 import { useCart } from 'src/sdk/cart/useCart'
+import { CheckoutContext } from 'src/utils/CheckoutContext/CheckoutProvider'
 
 
 const payment = () => {
 
   const cart = useCart()
   const { totalItems, subTotal, total, items } = cart
+  const { delivery } = useContext(CheckoutContext)
 
   return (
     <Section>
@@ -39,9 +42,15 @@ const payment = () => {
             <div className="mt-4">
               <span className='font-black text-xl'>DETALHES DO PEDIDO:</span>
             </div>
+
             {items.map((item: any) => (<DetailsOrder item={item} />))}
+
+            {delivery.map((item) => (<CheckoutDetails item={item} />))}
+
             <NeedHelp />
+
             <PayWith />
+
           </div>
         </div>
       </div>

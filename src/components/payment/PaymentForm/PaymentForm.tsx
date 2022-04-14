@@ -4,10 +4,13 @@ import { CheckoutContext } from '../../../utils/CheckoutContext/CheckoutProvider
 import Icon from 'src/components/ui/Icon'
 import PaymentWithTicket from '../PaymentWithTicket/PaymentWithTicket'
 import Button from 'src/components/ui/Button'
+import { useCart } from 'src/sdk/cart/useCart'
 
 const PaymentForm = () => {
 
     const { validadeSchemaPayment, onSubmitDelivery } = useContext(CheckoutContext)
+    const cart = useCart()
+    const { total } = cart
 
     return (
         <div className='mt-4'>
@@ -32,7 +35,7 @@ const PaymentForm = () => {
                                     <span className='font-black text-xl'>Cartão de crédito:</span>
                                 </div>
                                 <label className='font-mono text-base'>Parcelas</label>
-                                <Field placeholder="E-mail *" className={
+                                <Field placeholder={`1 x $${total}`} className={
                                     !errors.parcel && touched.parcel ?
                                         "border border-b-4 border-green-600 p-4 w-full" :
                                         touched.parcel ? "border border-red-600 border-b-4 p-4 w-full" :

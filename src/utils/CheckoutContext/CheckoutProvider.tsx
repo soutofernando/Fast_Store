@@ -1,28 +1,65 @@
-import React, { createContext, FC } from "react";
+import React, { createContext, FC, useEffect, useState } from "react";
 import * as Yup from "yup"
 import { navigate } from 'gatsby'
+
+export interface Delivery {
+    username: string
+    secondName: string
+    adress: string
+    postalCode: string
+    numberHouse: string
+    additionalInfo: string
+    district: string
+    city: string
+    state: string
+    email: string
+    phoneNumber: string
+    cpf: string
+}
 
 interface Props {
     validadeSchemaDelivery: any
     onSubmitDelivery(e: any): void
     validadeSchemaPayment: any
-
+    delivery: Delivery[]
 }
 
 export const CheckoutContext = createContext<Props>({
     validadeSchemaDelivery: {},
     onSubmitDelivery: () => { },
     validadeSchemaPayment: {},
+    delivery: [],
 
 })
 
-
 const CheckoutProvider: FC = ({ children }) => {
 
-    const onSubmitDelivery = (errors: any) => {
-        if (!errors) {
+    const [delivery, setDelivery] = useState<Delivery[]>([])
+
+    const onSubmitDelivery = (values: any) => {
+        
+        setDelivery([...delivery,
+        {
+            username: values.username,
+            secondName: values.secondName,
+            adress: values.adress,
+            postalCode: values.postalCode,
+            numberHouse: values.numberHouse,
+            additionalInfo: values.additionalInfo,
+            district: values.district,
+            city: values.city,
+            state: values.state,
+            email: values.email,
+            phoneNumber: values.phoneNumber,
+            cpf: values.cpf,
+        }
+        ]
+        )
+
+        if (delivery) {
             navigate("/payment")
-        } 
+        }
+        console.log(delivery)
     }
     const validadeSchemaDelivery = Yup.object().shape({
         username: Yup.string().required("Por favor, informe seu nome"),
@@ -47,11 +84,16 @@ const CheckoutProvider: FC = ({ children }) => {
         securityCode: Yup.string().required().max(3),
     });
 
+    useEffect(() => {
+        console.log(delivery.map((item: any) => { item }))
+    }, [])
+
     return (
         <CheckoutContext.Provider value={{
             validadeSchemaDelivery,
             onSubmitDelivery,
             validadeSchemaPayment,
+            delivery,
         }}>
             {children}
         </CheckoutContext.Provider>

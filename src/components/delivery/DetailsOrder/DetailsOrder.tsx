@@ -9,8 +9,8 @@ interface Props {
 
 const DetailsOrder = ({ item }: Props) => {
     return (
-        <div className=' mt-6'>
-            <div className='mt-4 flex h-32'>
+        <div className=' mt-6 mb-4'>
+            <div className='mt-4 flex h-32  mb-4'>
                 <div>
                     <img src={item.itemOffered.image[0].url} alt={item.itemOffered.image[0].alternateName} className="w-48 lg:w-56 border-b-slate-300" height="130px" />
                 </div>
