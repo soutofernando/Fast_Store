@@ -11,7 +11,7 @@ interface Props {
 const NameForm: FC<Props> = ({ errors, touched }) => {
     return (
         <div className='lg:flex'>
-            <div className='lg:w-1/2 mr-4'>
+            <div className='lg:w-1/2 lg:mr-4'>
                 <label className='font-mono text-base'>Nome</label>
                 <Field placeholder="Nome *" className={
                     !errors.username && touched.username ?

@@ -1,16 +1,22 @@
-import React, { FC } from 'react'
+import React, { FC, useMemo } from 'react'
 import { Field } from 'formik'
 import Icon from 'src/components/ui/Icon'
-
+import { validarCPF } from '../../../utils/ValidatorOfCpf/ValidatorOfCpf'
 interface Props {
     errors: any
     touched: any
+    values: any
 }
 
-const ContactInfo: FC<Props> = ({ errors, touched }) => {
+const ContactInfo: FC<Props> = ({ errors, touched, values }) => {
+
+    const isCpfValido = useMemo(() => {
+        return validarCPF(values.cpf)
+    }, [values.cpf])
 
     return (
         <div className='mt-6'>
+
             <div>
                 <span className='text-4xl font-black'>INFORMAÇÕES DE CONTATO</span>
             </div>
@@ -39,7 +45,7 @@ const ContactInfo: FC<Props> = ({ errors, touched }) => {
             <div className='mt-4'>
                 <label className='font-mono text-base'>CPF</label>
                 <Field placeholder="CPF *" className={
-                    !errors.cpf && touched.cpf ?
+                    !errors.cpf && touched.cpf && isCpfValido ?
                         "border border-b-4 border-green-600 p-4 w-full" :
                         touched.cpf ? "border border-red-600 border-b-4 p-4 w-full" :
                             " border border-black p-4 w-full"} name="cpf" type="text"

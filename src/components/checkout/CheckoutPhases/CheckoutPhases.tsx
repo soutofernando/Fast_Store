@@ -1,8 +1,14 @@
 import { Link } from 'gatsby'
-import React from 'react'
+import React, { useContext } from 'react'
 import Button from 'src/components/ui/Button'
+import { CheckoutContext } from 'src/utils/CheckoutContext/CheckoutProvider'
+
 
 const CheckoutPhases = () => {
+
+    const { deliveryphase, paymentphase } = useContext(CheckoutContext)
+
+
     return (
         <div className='lg:flex'>
             <div>
@@ -20,18 +26,32 @@ const CheckoutPhases = () => {
                 </Link>
             </div>
             <div>
-                <Link to="/payment">
-                    <Button>
-                        <div className='bg-black text-white rounded-full mr-2 w-6 h-6'>3</div> PAGAMENTO
+                {deliveryphase ?
+                    <Link to="/payment" >
+                        <Button>
+                            <div className='bg-black text-white rounded-full mr-2 w-6 h-6'>3</div> PAGAMENTO
+                        </Button>
+                    </Link>
+                    :
+                    <Button disabled>
+                        <div className='bg-gray-500 text-white rounded-full mr-2 w-6 h-6'>3</div> PAGAMENTO
                     </Button>
-                </Link>
+                }
+
             </div>
             <div>
-                <Link to="/checkout">
-                    <Button>
-                        <div className='bg-black text-white rounded-full mr-2 w-6 h-6'>4</div> PEDIDO FINALIZADO
+                {paymentphase ?
+                    <Link to="/checkout">
+                        <Button>
+                            <div className='bg-black text-white rounded-full mr-2 w-6 h-6'>4</div> PEDIDO FINALIZADO
+                        </Button>
+                    </Link>
+                    :
+                    <Button disabled>
+                        <div className='bg-gray-500 text-white rounded-full mr-2 w-6 h-6'>4</div> PEDIDO FINALIZADO
                     </Button>
-                </Link>
+                }
+
             </div>
         </div>
     )

@@ -33,6 +33,8 @@ const DeliveryForm = () => {
                     email: "",
                     phoneNumber: "",
                     cpf: "",
+                    verifiedBox: false,
+                    ageofBox: false,
                 }}
             >
                 {
@@ -40,16 +42,16 @@ const DeliveryForm = () => {
                         <Form>
                             <NameForm errors={errors} touched={touched} />
                             <AdressForm errors={errors} touched={touched} values={values} />
-                           
+
                             <div className=' mt-10'>
                                 <span className='flex'><div className='font-black'>País:&nbsp;</div> Brasil </span>
                             </div>
 
                             <DeliveryMethod />
 
-                            <ContactInfo errors={errors} touched={touched}  />
-                            
-                            <CheckBoxDelivery />
+                            <ContactInfo errors={errors} touched={touched} values={values} />
+
+                            <CheckBoxDelivery errors={errors} touched/>
 
                             <div className='mt-6 mb-4'>
                                 <Button type="submit" className='bg-black text-white p-4 font-mono font-black hover:text-gray-600 '>
@@ -64,7 +66,7 @@ const DeliveryForm = () => {
                     )
                 }
             </Formik>
-        </div>
+        </div >
     )
 }
 

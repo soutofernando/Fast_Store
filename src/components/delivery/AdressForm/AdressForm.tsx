@@ -26,7 +26,7 @@ const AdressForm: FC<Props> = ({ errors, touched, values}) => {
             <div className='lg:flex mt-4 w-full'>
                 <div className='lg:w-1/2'>
                     <label className='font-mono text-base'>CEP</label>
-                    <Field placeholder="CEP *" className={
+                    <Field placeholder="CEP *" maxLength="9" className={
                         !errors.postalCode && touched.postalCode ?
                             "border border-b-4 border-green-600 p-4 w-full" :
                             touched.postalCode ? "border border-red-600 border-b-4 p-4 w-full" :

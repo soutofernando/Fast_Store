@@ -15,7 +15,6 @@ interface OrderSummaryProps {
 }
 
 function OrderSummary({
-  subTotal,
   total,
   numberOfItems,
 }: OrderSummaryProps) {
@@ -28,7 +27,7 @@ function OrderSummary({
         </div>
         <div className='flex justify-between mt-3'>
           <span>{numberOfItems <= 1 ? <div>{numberOfItems} PRODUTO</div> : <div>{numberOfItems} PRODUTOS</div>} </span>
-          <span>{useFormattedPrice(subTotal)}</span>
+          <span>{useFormattedPrice(total)}</span>
         </div>
         <div className='flex justify-between mt-3'>
           <span>ENTREGA</span>

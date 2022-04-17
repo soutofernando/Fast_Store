@@ -36,7 +36,7 @@ const delivery = () => {
             <div className='mt-4'>
               <span className='text-xl font-black'>DETALHES DO PEDIDO:</span>
             </div>
-            {items.map((item: any) => (<DetailsOrder item={item} />))}
+            {items.map((item) => (<DetailsOrder item={item} />))}
             <hr className='mt-4' />
             <NeedHelp />
             <PayWith />

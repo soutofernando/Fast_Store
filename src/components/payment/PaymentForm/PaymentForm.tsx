@@ -4,18 +4,19 @@ import { CheckoutContext } from '../../../utils/CheckoutContext/CheckoutProvider
 import Icon from 'src/components/ui/Icon'
 import PaymentWithTicket from '../PaymentWithTicket/PaymentWithTicket'
 import Button from 'src/components/ui/Button'
-import { useCart } from 'src/sdk/cart/useCart'
+import PaymentSelectInput from '../PaymentSelectInput/PaymentSelectInput'
+
+
 
 const PaymentForm = () => {
 
-    const { validadeSchemaPayment, onSubmitDelivery } = useContext(CheckoutContext)
-    const cart = useCart()
-    const { total } = cart
+    const { validadeSchemaPayment, onSubmitPayment } = useContext(CheckoutContext)
+
 
     return (
         <div className='mt-4'>
             <Formik
-                onSubmit={onSubmitDelivery}
+                onSubmit={onSubmitPayment}
                 validationSchema={validadeSchemaPayment}
                 initialValues={
                     {
@@ -35,18 +36,13 @@ const PaymentForm = () => {
                                     <span className='font-black text-xl'>Cartão de crédito:</span>
                                 </div>
                                 <label className='font-mono text-base'>Parcelas</label>
-                                <Field placeholder={`1 x $${total}`} className={
-                                    !errors.parcel && touched.parcel ?
-                                        "border border-b-4 border-green-600 p-4 w-full" :
-                                        touched.parcel ? "border border-red-600 border-b-4 p-4 w-full" :
-                                            " border border-black p-4 w-full"} name="parcel" type="text"
-                                />
+                                <PaymentSelectInput errors={errors} touched={touched} />
                                 {errors.parcel && touched.parcel &&
                                     <span className='text-red-600 font-mono text-sm font-black flex'><Icon name='X' width={14} height={14} weight={"bold"} className="md:mt-1 mr-2" />{errors.parcel}</span>}
                             </div>
                             <div className='mt-4'>
                                 <label className='font-mono text-base'>Número do cartão</label>
-                                <Field placeholder="Número do cartão *" className={
+                                <Field placeholder="Número do cartão *"  maxLength="16" className={
                                     !errors.numberCard && touched.numberCard ?
                                         "border border-b-4 border-green-600 p-4 w-full" :
                                         touched.numberCard ? "border border-red-600 border-b-4 p-4 w-full" :
@@ -69,7 +65,7 @@ const PaymentForm = () => {
                             <div className='flex'>
                                 <div className='mt-4'>
                                     <label className='font-mono text-base'>Validade do cartão</label>
-                                    <Field placeholder="MM/YYYY *" className={
+                                    <Field placeholder="MM/YYYY *" maxLength="7" className={
                                         !errors.validity && touched.validity ?
                                             "border border-b-4 border-green-600 p-4 w-full" :
                                             touched.validity ? "border border-red-600 border-b-4 p-4 w-full" :
@@ -80,7 +76,7 @@ const PaymentForm = () => {
                                 </div>
                                 <div className='mt-4 ml-6'>
                                     <label className='font-mono text-base'>Código do cartão</label>
-                                    <Field placeholder="123 *" className={
+                                    <Field placeholder="123 *" maxLength="3" className={
                                         !errors.securityCode && touched.securityCode ?
                                             "border border-b-4 border-green-600 p-4 w-full" :
                                             touched.securityCode ? "border border-red-600 border-b-4 p-4 w-full" :

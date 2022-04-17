@@ -2,8 +2,8 @@ import React from 'react'
 
 const CheckoutHeader = () => {
   return (
-    <div>
-        <span></span>
+    <div className='mt-4'>
+      <span className='text-4xl font-black'>PEDIDO FINALIZADO</span>
     </div>
   )
 }
