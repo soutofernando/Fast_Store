@@ -14,19 +14,19 @@ const CheckoutDetails = ({ item }: Props) => {
                     <span className='text-xl font-black'>DETALHES DA ENTREGA:</span>
                 </div>
                 <div className=' mb-1'>
-                    <span>{item.username} {item.secondName}</span>
+                    <span>{item.username.charAt(0).toUpperCase() + item.username.slice(1)} {item.secondName.charAt(0).toUpperCase() + item.secondName.slice(1)}</span>
                 </div>
                 <div className=' mb-1'>
-                    <span>{item.adress},{item.numberHouse} </span>
+                    <span>{item.adress.charAt(0).toUpperCase() + item.adress.slice(1)},{item.numberHouse} </span>
                 </div>
                 <div className=' mb-1'>
-                    {item.additionalInfo ? <span>{item.additionalInfo}</span> : ""}
+                    {item.additionalInfo ? <span>{item.additionalInfo.charAt(0).toUpperCase() + item.additionalInfo.slice(1)}</span> : ""}
                 </div>
                 <div className=' mb-1'>
-                    <span>{item.district}</span>
+                    <span>{item.district.charAt(0).toUpperCase() + item.district.slice(1)}</span>
                 </div>
                 <div className=' mb-1'>
-                    <span>{item.city}, {item.state}, {item.postalCode}, Brasil</span>
+                    <span>{item.city.charAt(0).toUpperCase() + item.city.slice(1)}, {item.state}, {item.postalCode}, Brasil</span>
                 </div>
                 <div className=' mb-1'>
                     <span>{item.phoneNumber}</span>

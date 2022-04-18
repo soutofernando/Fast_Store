@@ -17,7 +17,7 @@ const Cart = () => {
 
     const btnProps = useCheckoutButton()
     const cart = useCart()
-    const { totalItems, isValidating, subTotal, total, items } = cart
+    const { totalItems, isValidating, subTotal, total, items, isEmpty } = cart
     const { user } = useContext(FireContext)
 
     return (
@@ -33,7 +33,7 @@ const Cart = () => {
                     </div>
                 </div>
                 <div className="lg:ml-14 mt-16 ">
-                    {user ? <div>
+                    {user && !isEmpty ? <div>
                         <Button
                             className='bg-black text-white flex p-4 justify-between text-center mt-10 w-full'
                             icon={
@@ -56,7 +56,12 @@ const Cart = () => {
                                     )
                                 }
                                 iconPosition="right"
-                                onClick={() => window.location.href = "/login"}
+                                onClick={() => {
+                                    if (!user) { window.location.href = "/login" }
+                                    else {
+                                        window.location.href = "/"
+                                    }
+                                }}
                             >
                                 {isValidating ? 'Carregando...' : 'FINALIZAR'}
                             </Button>
@@ -100,7 +105,7 @@ const Cart = () => {
                     </div>
                 </div>
             </div>
-        </Section>
+        </Section >
     )
 }
 

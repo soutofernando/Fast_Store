@@ -9,7 +9,7 @@ import PaymentDetails from 'src/components/payment/PaymentDetails/PaymentDetails
 const CheckoutContainer = () => {
 
     const { items } = useCart()
-    const { delivery, payment } = useContext(CheckoutContext)
+    const { delivery, payment, paymentWithTicket } = useContext(CheckoutContext)
 
     return (
         <div>
@@ -22,7 +22,9 @@ const CheckoutContainer = () => {
                         {delivery.map((item) => (<div><CheckoutDetails item={item} /></div>))}
                     </div>
                     <div>
-                        {payment.map((item) => (<div><PaymentDetails item={item} /></div>))}
+                        {paymentWithTicket ? "Pagou com boleto"
+                            :
+                            <div> {payment.map((item) => (<div><PaymentDetails item={item} /></div>))}</div>}
                     </div>
                 </div>
             </div>

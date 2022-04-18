@@ -64,7 +64,7 @@ function CartSidebar() {
           <footer >
             <div className='mb-10'>
               <Link to="/">
-                <Button className='bg-black text-white p-4 font-mono font-black hover:text-gray-600 '>
+                <Button onClick={() => dismissTransition.current?.()} className='bg-black text-white p-4 font-mono font-black hover:text-gray-600 '>
                   <div className='flex justify-between'>CONTINUAR COMPRANDO<div className='ml-4'>
                     <Icon name='ArrowRight' width={25} height={25} />
                   </div>

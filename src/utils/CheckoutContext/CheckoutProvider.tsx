@@ -1,6 +1,7 @@
 import React, { createContext, FC, useEffect, useState } from "react";
 import * as Yup from "yup"
 import { navigate } from 'gatsby'
+/*import { useCart } from "src/sdk/cart/useCart";*/
 
 export interface Payment {
     parcel: string
@@ -37,6 +38,10 @@ interface Props {
     payment: Payment[]
     setPayment(e: any): void
     onSubmitPayment(e: any): void
+    paymentWithTicket: boolean
+    setPaymentWithTicket(e: boolean): void
+    onClickpaymentWith(e: any): void
+    onFinishCheckout(e: any): void
 
 
 }
@@ -53,6 +58,10 @@ export const CheckoutContext = createContext<Props>({
     payment: [],
     setPayment: () => { },
     onSubmitPayment: () => { },
+    paymentWithTicket: false,
+    setPaymentWithTicket: () => false,
+    onClickpaymentWith: () => { },
+    onFinishCheckout: () => { },
 
 })
 
@@ -62,6 +71,16 @@ const CheckoutProvider: FC = ({ children }) => {
     const [payment, setPayment] = useState<Payment[]>([])
     const [deliveryphase, setDeliveryPhase] = useState(false)
     const [paymentphase, setPaymentPhase] = useState(false)
+    const [paymentWithTicket, setPaymentWithTicket] = useState(false)
+    /*const { setCart } = useCart()*/
+
+    const onFinishCheckout = () => {
+        navigate("/")
+    }
+
+    const onClickpaymentWith = () => {
+        setPaymentWithTicket(!paymentWithTicket)
+    }
 
     const onSubmitPayment = (values: any) => {
         setPayment([...payment,
@@ -120,7 +139,7 @@ const CheckoutProvider: FC = ({ children }) => {
         phoneNumber: Yup.string().required("Por favor, informe seu telefone"),
         cpf: Yup.string().required("Por favor, informe um cpf válido"),
         verifiedBox: Yup.boolean().isTrue("A opção acima precisa ser preenchida"),
-        ageofBox: Yup.boolean().isTrue("Você precisa ter mais dde 18 anos"),
+        ageofBox: Yup.boolean().isTrue("Você precisa ter mais de 18 anos"),
     });
 
     const validadeSchemaPayment = Yup.object().shape({
@@ -150,6 +169,10 @@ const CheckoutProvider: FC = ({ children }) => {
             payment,
             setPayment,
             onSubmitPayment,
+            paymentWithTicket,
+            setPaymentWithTicket,
+            onClickpaymentWith,
+            onFinishCheckout,
         }}>
             {children}
         </CheckoutContext.Provider>

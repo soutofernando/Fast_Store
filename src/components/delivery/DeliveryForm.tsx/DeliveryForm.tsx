@@ -51,7 +51,7 @@ const DeliveryForm = () => {
 
                             <ContactInfo errors={errors} touched={touched} values={values} />
 
-                            <CheckBoxDelivery errors={errors} touched/>
+                            <CheckBoxDelivery errors={errors} touched={touched}/>
 
                             <div className='mt-6 mb-4'>
                                 <Button type="submit" className='bg-black text-white p-4 font-mono font-black hover:text-gray-600 '>

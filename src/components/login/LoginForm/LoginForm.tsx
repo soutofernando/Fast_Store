@@ -6,7 +6,7 @@ import Icon from 'src/components/ui/Icon'
 
 const LoginForm = () => {
 
-    const { onSubmitLogin, validateSchemaLogin } = useContext(FireContext)
+    const { onSubmitLogin, validateSchemaLogin, invalidLogin } = useContext(FireContext)
 
     return (
         <div>
@@ -26,7 +26,7 @@ const LoginForm = () => {
                                 <Field name="loginEmail" type="email" placeholder="E-mail *" className={
                                     !errors.loginEmail && touched.loginEmail ?
                                         "border border-b-4 border-green-600 p-4 w-full" :
-                                        touched.loginEmail ? "border border-red-600 border-b-4 p-4 w-full" :
+                                        touched.loginEmail || invalidLogin ? "border border-red-600 border-b-4 p-4 w-full" :
                                             "border border-black p-4 w-full"}
                                 />
                                 {errors.loginEmail && touched.loginEmail &&
@@ -37,12 +37,18 @@ const LoginForm = () => {
                                 <Field name="loginPasswd" type="password" placeholder="Senha" className={
                                     !errors.loginPasswd && touched.loginPasswd ?
                                         "border border-b-4 border-green-600 p-4 w-full" :
-                                        touched.loginPasswd ? "border border-red-600 border-b-4 p-4 w-full" :
+                                        touched.loginPasswd || invalidLogin ? "border border-red-600 border-b-4 p-4 w-full" :
                                             "border border-black p-4 w-full"} />
                                 {errors.loginPasswd && touched.loginPasswd &&
                                     <span className='text-red-600 font-mono text-sm font-black flex'><Icon name='X' width={14} height={14} weight={"bold"} className="mt-1 mr-2" />{errors.loginPasswd}</span>}
 
                             </div>
+                            {
+                                invalidLogin ?
+                                    <span className='text-red-600 font-mono text-sm font-black flex'><Icon name='X' width={14} height={14} weight={"bold"} className="mt-1 mr-2" />E-mail e/ou senha inválidos</span>
+                                    :
+                                    ""
+                            }
                             <div className='mt-4'>
                                 <Button type="submit" className='bg-black text-white p-4 font-mono font-black hover:text-gray-600 '>
                                     <div className='flex'>IDENTIFIQUE-SE<div className='ml-4'>

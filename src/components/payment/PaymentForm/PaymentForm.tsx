@@ -5,12 +5,13 @@ import Icon from 'src/components/ui/Icon'
 import PaymentWithTicket from '../PaymentWithTicket/PaymentWithTicket'
 import Button from 'src/components/ui/Button'
 import PaymentSelectInput from '../PaymentSelectInput/PaymentSelectInput'
+import { Link } from 'gatsby'
 
 
 
 const PaymentForm = () => {
 
-    const { validadeSchemaPayment, onSubmitPayment } = useContext(CheckoutContext)
+    const { validadeSchemaPayment, onSubmitPayment, paymentWithTicket } = useContext(CheckoutContext)
 
 
     return (
@@ -42,7 +43,7 @@ const PaymentForm = () => {
                             </div>
                             <div className='mt-4'>
                                 <label className='font-mono text-base'>Número do cartão</label>
-                                <Field placeholder="Número do cartão *"  maxLength="16" className={
+                                <Field placeholder="Número do cartão *" maxLength="16" className={
                                     !errors.numberCard && touched.numberCard ?
                                         "border border-b-4 border-green-600 p-4 w-full" :
                                         touched.numberCard ? "border border-red-600 border-b-4 p-4 w-full" :
@@ -88,14 +89,29 @@ const PaymentForm = () => {
                             </div>
                             <hr className='mt-6' />
                             <PaymentWithTicket />
-                            <div className="mt-10">
-                                <Button type="submit" className='bg-black text-white p-4 font-mono font-black hover:text-gray-600 '>
-                                    <div className='flex'>FINALIZAR PEDIDO<div className='ml-4'>
-                                        <Icon name='ArrowRight' width={25} height={25} />
-                                    </div>
-                                    </div>
-                                </Button>
-                            </div>
+                            {paymentWithTicket ?
+                                <div className="mt-10">
+                                    <Link to="/checkout">
+                                        <Button
+                                            className='bg-black text-white p-4 font-mono font-black hover:text-gray-600 '>
+                                            <div className='flex'>FINALIZAR PEDIDO<div className='ml-4'>
+                                                <Icon name='ArrowRight' width={25} height={25} />
+                                            </div>
+                                            </div>
+                                        </Button>
+                                    </Link>
+                                </div>
+                                :
+                                <div className="mt-10">
+                                    <Button type="submit" className='bg-black text-white p-4 font-mono font-black hover:text-gray-600 '>
+                                        <div className='flex'>FINALIZAR PEDIDO<div className='ml-4'>
+                                            <Icon name='ArrowRight' width={25} height={25} />
+                                        </div>
+                                        </div>
+                                    </Button>
+                                </div>
+                            }
+
                         </Form>
                     )
                 }

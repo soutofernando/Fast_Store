@@ -18,7 +18,7 @@ const payment = () => {
 
   const cart = useCart()
   const { totalItems, subTotal, total, items } = cart
-  const { delivery, payment } = useContext(CheckoutContext)
+  const { delivery } = useContext(CheckoutContext)
 
   return (
     <Section>

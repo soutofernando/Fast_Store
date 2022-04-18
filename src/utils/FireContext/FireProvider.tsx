@@ -17,6 +17,8 @@ interface Props {
     setKeepConnected(res: boolean): void
     inRegister: boolean
     setInRegister(e: boolean): void
+    invalidLogin: boolean
+    setInvalidLogin(e: boolean): void
 
 }
 
@@ -32,6 +34,8 @@ export const FireContext = createContext<Props>({
     setKeepConnected: () => { },
     inRegister: false,
     setInRegister: () => { },
+    invalidLogin: false,
+    setInvalidLogin: () => { },
 })
 
 const FireProvider: FC = ({ children }) => {
@@ -39,6 +43,7 @@ const FireProvider: FC = ({ children }) => {
     const [user, setUser] = useState<any>({})
     const [keepconnected, setKeepConnected] = useState(false)
     const [inRegister, setInRegister] = useState(false)
+    const [invalidLogin, setInvalidLogin] = useState(false)
 
     const provider = new GoogleAuthProvider()
     const signInWithGoogle = () => {
@@ -75,8 +80,8 @@ const FireProvider: FC = ({ children }) => {
                 console.log(user)
             }).
             catch(
-                (error) => {
-                    console.log(error.message)
+                () => {
+                    setInvalidLogin(!invalidLogin)
                 }
             )
     }
@@ -95,12 +100,12 @@ const FireProvider: FC = ({ children }) => {
 
     const validateSchemaRegister = Yup.object().shape({
         registerEmail: Yup.string().email("Por favor, insira um endereço de e-mail válido").required("Por favor, insira um endereço de e-mail válido"),
-        registerPasswd: Yup.string().min(8).required("Por favor, insira uma senha"),
+        registerPasswd: Yup.string().min(8, "Senha precisa ter 8 ou mais caracteres").required("Por favor, insira uma senha"),
 
     });
     const validateSchemaLogin = Yup.object().shape({
         loginEmail: Yup.string().email().required("Por favor, insira um endereço de e-mail válido"),
-        loginPasswd: Yup.string().min(8).required("Por favor, insira uma senha"),
+        loginPasswd: Yup.string().required("Por favor, insira uma senha válida"),
 
     });
 
@@ -139,6 +144,8 @@ const FireProvider: FC = ({ children }) => {
             setKeepConnected,
             inRegister,
             setInRegister,
+            invalidLogin,
+            setInvalidLogin,
         }}>
             {children}
         </FireContext.Provider>
